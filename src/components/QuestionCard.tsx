@@ -1,0 +1,119 @@
+import React from 'react';
+import { Question } from '../types';
+
+interface QuestionCardProps {
+  question: Question;
+  questionNumber: number;
+  selectedAnswer: number | null;
+  onAnswerSelect: (answer: number) => void;
+  showExplanation?: boolean;
+}
+
+export const QuestionCard: React.FC<QuestionCardProps> = ({
+  question,
+  questionNumber,
+  selectedAnswer,
+  onAnswerSelect,
+  showExplanation = false,
+}) => {
+  const options = [
+    { value: 1, text: question.option_a },
+    { value: 2, text: question.option_b },
+    { value: 3, text: question.option_c },
+    { value: 4, text: question.option_d },
+  ];
+
+  const getOptionStyle = (optionValue: number) => {
+    if (!showExplanation) {
+      return selectedAnswer === optionValue
+        ? 'bg-lime-400 text-black border-lime-400'
+        : 'bg-gray-800 text-white border-gray-600 hover:border-gray-500';
+    }
+
+    // Show explanation mode
+    if (optionValue === question.correct_answer) {
+      return 'bg-green-500/20 text-green-400 border-green-500';
+    }
+    if (selectedAnswer === optionValue && optionValue !== question.correct_answer) {
+      return 'bg-red-500/20 text-red-400 border-red-500';
+    }
+    return 'bg-gray-800 text-gray-400 border-gray-600';
+  };
+
+  return (
+    <div className="bg-gray-900 rounded-xl p-6 space-y-6">
+      <div className="space-y-4">
+        <div className="flex items-start justify-between">
+          <h3 className="text-lg font-semibold text-white">
+            Question {questionNumber}
+          </h3>
+          {question.difficulty_level && (
+            <span className={`px-2 py-1 rounded text-xs font-medium ${
+              question.difficulty_level === 'easy' ? 'bg-green-500/20 text-green-400' :
+              question.difficulty_level === 'medium' ? 'bg-yellow-500/20 text-yellow-400' :
+              'bg-red-500/20 text-red-400'
+            }`}>
+              {question.difficulty_level}
+            </span>
+          )}
+        </div>
+
+        {question.image_url && (
+          <div className="w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
+            <img
+              src={question.image_url}
+              alt="Question illustration"
+              className="w-full h-full object-contain"
+              loading="lazy"
+            />
+          </div>
+        )}
+
+        <p className="text-white text-lg leading-relaxed">
+          {question.question_text}
+        </p>
+      </div>
+
+      <div className="space-y-3">
+        {options.map((option) => (
+          <button
+            key={option.value}
+            onClick={() => !showExplanation && onAnswerSelect(option.value)}
+            disabled={showExplanation}
+            className={`w-full text-left p-4 rounded-lg border-2 transition-all duration-200 ${getOptionStyle(option.value)} ${
+              !showExplanation ? 'hover:scale-[1.02] active:scale-[0.98]' : 'cursor-default'
+            }`}
+          >
+            <div className="flex items-center space-x-3">
+              <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-sm font-bold ${
+                selectedAnswer === option.value
+                  ? showExplanation
+                    ? option.value === question.correct_answer
+                      ? 'border-green-400 bg-green-400 text-green-900'
+                      : 'border-red-400 bg-red-400 text-red-900'
+                    : 'border-black bg-black text-lime-400'
+                  : option.value === question.correct_answer && showExplanation
+                    ? 'border-green-400 bg-green-400 text-green-900'
+                    : 'border-current'
+              }`}>
+                {String.fromCharCode(64 + option.value)}
+              </div>
+              <span className="flex-1 font-medium">
+                {option.text}
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      {showExplanation && question.explanation && (
+        <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+          <h4 className="font-semibold text-blue-400 mb-2">Explanation</h4>
+          <p className="text-gray-300 leading-relaxed">
+            {question.explanation}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
