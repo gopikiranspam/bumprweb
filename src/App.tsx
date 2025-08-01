@@ -9,6 +9,8 @@ import { useAuth } from './hooks/useAuth';
 
 import { AuthPage } from './pages/AuthPage';
 import { DashboardPage } from './pages/DashboardPage';
+import { GuestPracticeSelectionPage } from './pages/GuestPracticeSelectionPage';
+import { GuestPracticeTestPage } from './pages/GuestPracticeTestPage';
 
 // Loading component
 const LoadingSpinner: React.FC = () => (
@@ -70,6 +72,10 @@ const AppRoutes: React.FC = () => {
             </ProtectedRoute>
           }
         />
+
+        {/* Guest Routes */}
+        <Route path="/guest-practice" element={<GuestPracticeSelectionPage />} />
+        <Route path="/guest-practice/:subject" element={<GuestPracticeTestPage />} />
 
         {/* Default redirect */}
         <Route path="/" element={<Navigate to="/dashboard" replace />} />

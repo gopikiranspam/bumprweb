@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Phone, Mail, Loader2 } from 'lucide-react';
 import { Logo } from '../components/Logo';
 import { LanguageSelector } from '../components/LanguageSelector';
@@ -7,6 +8,7 @@ import { useLanguage } from '../contexts/LanguageProvider';
 import { toast } from 'react-toastify';
 
 export const AuthPage: React.FC = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState<'phone' | 'otp' | 'profile'>('phone');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [otp, setOtp] = useState('');
