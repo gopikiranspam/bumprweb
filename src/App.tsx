@@ -11,8 +11,6 @@ import { AuthPage } from './pages/AuthPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { GuestPracticeSelectionPage } from './pages/GuestPracticeSelectionPage';
 import { GuestPracticeTestPage } from './pages/GuestPracticeTestPage';
-import { GuestPracticeSelectionPage } from './pages/GuestPracticeSelectionPage';
-import { GuestPracticeTestPage } from './pages/GuestPracticeTestPage';
 
 // Loading component
 const LoadingSpinner: React.FC = () => (
