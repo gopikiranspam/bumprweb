@@ -199,6 +199,15 @@ export const AuthPage: React.FC = () => {
               <Mail size={20} />
               <span>{t('continueWithGoogle')}</span>
             </button>
+
+            {/* Guest Login */}
+            <button
+              onClick={() => navigate('/guest-practice')}
+              disabled={loading}
+              className="w-full bg-gray-700 hover:bg-gray-600 disabled:bg-gray-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2"
+            >
+              <span>Continue as Guest</span>
+            </button>
           </div>
 
           {/* Footer */}
