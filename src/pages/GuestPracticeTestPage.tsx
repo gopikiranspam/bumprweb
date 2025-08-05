@@ -14,7 +14,6 @@ import { LanguageSelector } from '../components/LanguageSelector';
 import { QuestionCard } from '../components/QuestionCard';
 import { ProgressBar } from '../components/ProgressBar';
 import { Timer } from '../components/Timer';
-import { QuestionTimer } from '../components/QuestionTimer';
 import { useLanguage } from '../contexts/LanguageProvider';
 import { supabaseAdmin } from '../lib/supabase-admin';
 import { Question } from '../types';
@@ -35,7 +34,6 @@ export const GuestPracticeTestPage: React.FC = () => {
   const [timeUp, setTimeUp] = useState(false);
 
   const TEST_DURATION = 10 * 60; // 10 minutes in seconds
-  const QUESTION_TIMER_DURATION = 30; // 30 seconds per question
 
   useEffect(() => {
     if (subject) {
@@ -87,17 +85,6 @@ export const GuestPracticeTestPage: React.FC = () => {
     const newAnswers = [...answers];
     newAnswers[currentQuestionIndex] = answer;
     setAnswers(newAnswers);
-  };
-
-  const handleQuestionTimeUp = () => {
-    // Auto-advance to next question when 30 seconds are up
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      toast.warning('Time up for this question!');
-    } else {
-      // If it's the last question, submit the test
-      handleSubmitTest();
-    }
   };
 
   const handleNextQuestion = () => {
@@ -252,8 +239,6 @@ export const GuestPracticeTestPage: React.FC = () => {
               <ul className="text-gray-300 space-y-2 text-left">
                 <li>• You have {TEST_DURATION / 60} minutes to complete the test</li>
                 <li>• {questions.length} multiple choice questions</li>
-                <li>• Each question has a 30-second timer</li>
-                <li>• Questions will auto-advance when time expires</li>
                 <li>• You can navigate between questions</li>
                 <li>• Results will be shown immediately after completion</li>
                 <li>• You can retake the test as many times as you want</li>
@@ -271,8 +256,8 @@ export const GuestPracticeTestPage: React.FC = () => {
 
         {testStarted && !showResults && (
           <div className="space-y-6">
-            {/* Timer and Progress */}
-            <div className="grid md:grid-cols-3 gap-4">
+            {/* Overall Timer and Progress */}
+            <div className="grid md:grid-cols-2 gap-4">
               <Timer
                 duration={TEST_DURATION}
                 onTimeUp={handleTimeUp}
@@ -281,12 +266,6 @@ export const GuestPracticeTestPage: React.FC = () => {
               <ProgressBar
                 current={currentQuestionIndex + 1}
                 total={questions.length}
-              />
-              <QuestionTimer
-                duration={QUESTION_TIMER_DURATION}
-                onTimeUp={handleQuestionTimeUp}
-                isActive={testStarted && !testCompleted}
-                questionIndex={currentQuestionIndex}
               />
             </div>
 
