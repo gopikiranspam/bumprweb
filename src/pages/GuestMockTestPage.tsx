@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { 
   ArrowLeft, 
   Clock, 
@@ -7,7 +7,8 @@ import {
   XCircle, 
   RotateCcw,
   User,
-  LogIn
+  LogIn,
+  Award
 } from 'lucide-react';
 import { Logo } from '../components/Logo';
 import { LanguageSelector } from '../components/LanguageSelector';
@@ -20,8 +21,7 @@ import { supabaseAdmin } from '../lib/supabase-admin';
 import { Question } from '../types';
 import { toast } from 'react-toastify';
 
-export const GuestPracticeTestPage: React.FC = () => {
-  const { subject } = useParams<{ subject: string }>();
+export const GuestMockTestPage: React.FC = () => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
 
@@ -38,44 +38,42 @@ export const GuestPracticeTestPage: React.FC = () => {
   const QUESTION_TIMER_DURATION = 30; // 30 seconds per question
 
   useEffect(() => {
-    if (subject) {
-      loadQuestions();
-    }
-  }, [subject, language]);
+    loadQuestions();
+  }, [language]);
 
   const loadQuestions = async () => {
-    if (!subject) return;
-
     setLoading(true);
     try {
-      const data = await supabaseAdmin.getTestQuestions(subject, language, 20);
-      
-      if (data && data.length > 0) {
-        setQuestions(data);
-        setAnswers(new Array(data.length).fill(null));
-      } else {
-        toast.error('No questions available for this subject');
+      // Fetch questions proportionally from all subjects
+      const [roadSignsResult, roadRulesResult, drivingPrinciplesResult] = await Promise.all([
+        supabaseAdmin.getTestQuestions('road_signs', language, 7),
+        supabaseAdmin.getTestQuestions('road_rules', language, 7),
+        supabaseAdmin.getTestQuestions('driving_principles', language, 6)
+      ]);
+
+      const allQuestions = [
+        ...(roadSignsResult || []),
+        ...(roadRulesResult || []),
+        ...(drivingPrinciplesResult || [])
+      ];
+
+      if (allQuestions.length === 0) {
+        toast.error('No questions available for the mock test');
         navigate('/guest-practice');
+        return;
       }
+
+      // Shuffle the combined questions for randomness
+      const shuffledQuestions = allQuestions.sort(() => Math.random() - 0.5);
+      
+      setQuestions(shuffledQuestions);
+      setAnswers(new Array(shuffledQuestions.length).fill(null));
     } catch (error: any) {
       console.error('Error loading questions:', error);
       toast.error('Failed to load questions');
       navigate('/guest-practice');
     } finally {
       setLoading(false);
-    }
-  };
-
-  const getSubjectName = (subjectId: string) => {
-    switch (subjectId) {
-      case 'road_signs':
-        return t('roadSigns');
-      case 'road_rules':
-        return t('trafficRules');
-      case 'driving_principles':
-        return t('drivingPrinciples');
-      default:
-        return subjectId;
     }
   };
 
@@ -89,17 +87,6 @@ export const GuestPracticeTestPage: React.FC = () => {
     setAnswers(newAnswers);
   };
 
-  const handleQuestionTimeUp = () => {
-    // Auto-advance to next question when 30 seconds are up
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      toast.warning('Time up for this question!');
-    } else {
-      // If it's the last question, submit the test
-      handleSubmitTest();
-    }
-  };
-
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -109,6 +96,17 @@ export const GuestPracticeTestPage: React.FC = () => {
   const handlePreviousQuestion = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
+    }
+  };
+
+  const handleQuestionTimeUp = () => {
+    // Auto-advance to next question when 30 seconds are up
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      toast.warning('Time up for this question!');
+    } else {
+      // If it's the last question, submit the test
+      handleSubmitTest();
     }
   };
 
@@ -201,8 +199,9 @@ export const GuestPracticeTestPage: React.FC = () => {
           </button>
           <Logo size="sm" />
           <div className="hidden sm:block">
-            <h1 className="text-lg font-semibold text-white">
-              {getSubjectName(subject || '')} - Practice Test
+            <h1 className="text-lg font-semibold text-white flex items-center space-x-2">
+              <Award size={20} className="text-lime-400" />
+              <span>LLR Mock Test</span>
             </h1>
           </div>
         </div>
@@ -220,10 +219,10 @@ export const GuestPracticeTestPage: React.FC = () => {
           <div className="text-center space-y-8">
             <div>
               <h2 className="text-3xl font-bold text-white mb-4">
-                {getSubjectName(subject || '')} Practice Test
+                LLR Mock Test
               </h2>
               <p className="text-gray-400 text-lg">
-                Test your knowledge with {questions.length} questions
+                Complete mock test with {questions.length} questions from all subjects
               </p>
             </div>
 
@@ -232,9 +231,9 @@ export const GuestPracticeTestPage: React.FC = () => {
               <div className="flex items-start space-x-3">
                 <User size={24} className="text-yellow-400 flex-shrink-0 mt-1" />
                 <div className="text-left">
-                  <h3 className="font-semibold text-yellow-400 mb-2">Guest Practice Mode</h3>
+                  <h3 className="font-semibold text-yellow-400 mb-2">Guest Mock Test Mode</h3>
                   <p className="text-yellow-300 text-sm mb-3">
-                    You're taking this test as a guest. Your results won't be saved or tracked.
+                    You're taking this mock test as a guest. Your results won't be saved or tracked.
                   </p>
                   <button
                     onClick={() => navigate('/auth')}
@@ -248,15 +247,14 @@ export const GuestPracticeTestPage: React.FC = () => {
             </div>
 
             <div className="bg-gray-900 rounded-xl p-6 max-w-2xl mx-auto">
-              <h3 className="text-xl font-bold text-white mb-4">Test Instructions</h3>
+              <h3 className="text-xl font-bold text-white mb-4">Mock Test Instructions</h3>
               <ul className="text-gray-300 space-y-2 text-left">
                 <li>• You have {TEST_DURATION / 60} minutes to complete the test</li>
-                <li>• {questions.length} multiple choice questions</li>
+                <li>• {questions.length} questions from all subjects (Road Signs, Traffic Rules, Safe Driving)</li>
                 <li>• Each question has a 30-second timer</li>
                 <li>• Questions will auto-advance when time expires</li>
                 <li>• You can navigate between questions</li>
                 <li>• Results will be shown immediately after completion</li>
-                <li>• You can retake the test as many times as you want</li>
               </ul>
             </div>
 
@@ -264,7 +262,7 @@ export const GuestPracticeTestPage: React.FC = () => {
               onClick={handleStartTest}
               className="bg-lime-400 hover:bg-lime-300 text-black font-bold py-4 px-8 rounded-lg text-lg transition-colors"
             >
-              Start Practice Test
+              Start Mock Test
             </button>
           </div>
         )}
@@ -354,14 +352,14 @@ export const GuestPracticeTestPage: React.FC = () => {
                 {results.correctAnswers} out of {results.totalQuestions} questions correct
               </p>
 
-              {/* Guest Notice */}
-              <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-6">
+              {/* Mock Test Badge */}
+              <div className="bg-lime-400/10 border border-lime-400/30 rounded-lg p-4 mb-6">
                 <div className="flex items-center justify-center space-x-2 mb-2">
-                  <User size={20} className="text-yellow-400" />
-                  <span className="font-semibold text-yellow-400">Guest Mode</span>
+                  <Award size={20} className="text-lime-400" />
+                  <span className="font-semibold text-lime-400">LLR Mock Test Complete</span>
                 </div>
-                <p className="text-yellow-300 text-sm">
-                  These results are not saved. Sign up to track your progress and access detailed analytics.
+                <p className="text-lime-300 text-sm">
+                  You've completed a comprehensive test covering all subjects. Sign up to track your progress!
                 </p>
               </div>
 
@@ -371,14 +369,14 @@ export const GuestPracticeTestPage: React.FC = () => {
                   className="flex items-center justify-center space-x-2 bg-gray-700 hover:bg-gray-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
                 >
                   <RotateCcw size={18} />
-                  <span>Retake Test</span>
+                  <span>Retake Mock Test</span>
                 </button>
                 
                 <button
                   onClick={() => navigate('/guest-practice')}
                   className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-3 px-6 rounded-lg transition-colors"
                 >
-                  Choose Another Subject
+                  Practice Individual Subjects
                 </button>
                 
                 <button
@@ -405,9 +403,14 @@ export const GuestPracticeTestPage: React.FC = () => {
                     }`}
                   >
                     <div className="flex items-start justify-between mb-2">
-                      <span className="font-medium text-white">
-                        Question {index + 1}
-                      </span>
+                      <div className="flex items-center space-x-2">
+                        <span className="font-medium text-white">
+                          Question {index + 1}
+                        </span>
+                        <span className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">
+                          {result.question.subject.replace('_', ' ').toUpperCase()}
+                        </span>
+                      </div>
                       {result.isCorrect ? (
                         <CheckCircle size={20} className="text-green-400" />
                       ) : (

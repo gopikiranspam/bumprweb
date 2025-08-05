@@ -11,6 +11,7 @@ import { AuthPage } from './pages/AuthPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { GuestPracticeSelectionPage } from './pages/GuestPracticeSelectionPage';
 import { GuestPracticeTestPage } from './pages/GuestPracticeTestPage';
+import { GuestMockTestPage } from './pages/GuestMockTestPage';
 
 // Loading component
 const LoadingSpinner: React.FC = () => (
@@ -76,6 +77,7 @@ const AppRoutes: React.FC = () => {
         {/* Guest Routes */}
         <Route path="/guest-practice" element={<GuestPracticeSelectionPage />} />
         <Route path="/guest-practice/:subject" element={<GuestPracticeTestPage />} />
+        <Route path="/guest-mock-test" element={<GuestMockTestPage />} />
 
         {/* Default redirect */}
         <Route path="/" element={<Navigate to="/dashboard" replace />} />

@@ -7,7 +7,8 @@ import {
   Play,
   ArrowLeft,
   User,
-  AlertCircle
+  AlertCircle,
+  Trophy
 } from 'lucide-react';
 import { Logo } from '../components/Logo';
 import { LanguageSelector } from '../components/LanguageSelector';
@@ -93,6 +94,26 @@ export const GuestPracticeSelectionPage: React.FC = () => {
           <p className="text-gray-400 text-lg">
             Choose a subject to start practicing for your driving test
           </p>
+        </div>
+
+        {/* LLR Mock Test Button */}
+        <div className="mb-8">
+          <div className="bg-gradient-to-r from-lime-400/10 to-green-400/10 border border-lime-400/30 rounded-xl p-6 text-center">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <Trophy size={32} className="text-lime-400" />
+              <h2 className="text-2xl font-bold text-white">LLR Mock Test</h2>
+            </div>
+            <p className="text-gray-300 mb-4">
+              Take a comprehensive mock test with questions from all subjects (20 questions, 10 minutes)
+            </p>
+            <button
+              onClick={() => navigate('/guest-mock-test')}
+              className="bg-lime-400 hover:bg-lime-300 text-black font-bold py-3 px-8 rounded-lg text-lg transition-colors inline-flex items-center space-x-2"
+            >
+              <Trophy size={20} />
+              <span>Start Mock Test</span>
+            </button>
+          </div>
         </div>
 
         {/* Subject Cards */}
