@@ -24,6 +24,8 @@ export const QuestionTimer: React.FC<QuestionTimerProps> = ({ duration, onTimeUp
         }
         return prev - 1;
       });
+    }
+    )
     return `${seconds}s`;
   }, [isActive, onTimeUp]);
 
