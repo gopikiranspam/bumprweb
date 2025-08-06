@@ -34,7 +34,7 @@ export const QuestionTimer: React.FC<QuestionTimerProps> = ({ duration, onTimeUp
   };
 
   return (
-    <span className="text-gray-400 font-mono text-sm ml-2">
+    <span>
       [{formatTime(timeLeft)}]
     </span>
   );

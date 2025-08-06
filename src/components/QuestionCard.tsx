@@ -65,10 +65,14 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
     <div className="bg-gray-900 rounded-xl p-6 space-y-6">
       <div className="space-y-4">
         <div className="flex items-start justify-between">
-          <h3 className="text-lg font-semibold text-white flex items-center">
-            Question {questionNumber}
-            {timerComponent}
-          </h3>
+          <div className="flex items-center justify-between w-full">
+            <h3 className="text-lg font-semibold text-white">
+              Question {questionNumber}
+            </h3>
+            <div className="text-lg font-semibold text-lime-400">
+              {timerComponent}
+            </div>
+          </div>
           {question.difficulty_level && (
             <span className={`px-2 py-1 rounded text-xs font-medium ${
               question.difficulty_level === 'easy' ? 'bg-green-500/20 text-green-400' :
