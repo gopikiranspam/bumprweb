@@ -63,16 +63,6 @@ export const Timer: React.FC<TimerProps> = ({ duration, onTimeUp, isActive, onTi
           {formatTime(timeLeft)}
         </span>
       </div>
-      
-      <div className="w-full bg-gray-700 rounded-full h-2">
-        <div 
-          className={`h-2 rounded-full transition-all duration-1000 ${
-            timeLeft <= duration * 0.2 ? 'bg-red-400' :
-            timeLeft <= duration * 0.5 ? 'bg-yellow-400' : 'bg-lime-400'
-          }`}
-          style={{ width: getProgressWidth() }}
-        />
-      </div>
     </div>
   );
 };
