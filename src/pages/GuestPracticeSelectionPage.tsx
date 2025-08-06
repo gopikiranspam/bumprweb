@@ -160,10 +160,9 @@ export const GuestPracticeSelectionPage: React.FC = () => {
             </div>
             <button
               onClick={() => navigate('/guest-study-guide')}
-              className="bg-lime-400 hover:bg-lime-300 text-black font-bold py-3 px-8 rounded-lg text-lg transition-colors inline-flex items-center space-x-2"
+              className="bg-lime-400 hover:bg-lime-300 text-black font-bold py-3 px-8 rounded-lg text-lg transition-colors"
             >
-              <BookOpen size={20} />
-              <span>Start LLR Test Syllabus</span>
+              Start
             </button>
           </div>
         </div>
