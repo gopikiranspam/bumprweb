@@ -6,6 +6,7 @@ interface QuestionCardProps {
   questionNumber: number;
   selectedAnswer: number | null;
   onAnswerSelect: (answer: number) => void;
+  showFeedback?: boolean;
   showExplanation?: boolean;
 }
 
@@ -14,6 +15,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   questionNumber,
   selectedAnswer,
   onAnswerSelect,
+  showFeedback = false,
   showExplanation = false,
 }) => {
   const options = [
@@ -24,13 +26,13 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   ];
 
   const getOptionStyle = (optionValue: number) => {
-    if (!showExplanation) {
+    if (!showFeedback && !showExplanation) {
       return selectedAnswer === optionValue
         ? 'bg-lime-400 text-black border-lime-400'
         : 'bg-gray-800 text-white border-gray-600 hover:border-gray-500';
     }
 
-    // Show explanation mode
+    // Show feedback or explanation mode
     if (optionValue === question.correct_answer) {
       return 'bg-green-500/20 text-green-400 border-green-500';
     }
@@ -38,6 +40,23 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
       return 'bg-red-500/20 text-red-400 border-red-500';
     }
     return 'bg-gray-800 text-gray-400 border-gray-600';
+  };
+
+  const getOptionCircleStyle = (optionValue: number) => {
+    if (!showFeedback && !showExplanation) {
+      return selectedAnswer === optionValue
+        ? 'border-black bg-black text-lime-400'
+        : 'border-current';
+    }
+
+    // Show feedback or explanation mode
+    if (optionValue === question.correct_answer) {
+      return 'border-green-400 bg-green-400 text-green-900';
+    }
+    if (selectedAnswer === optionValue && optionValue !== question.correct_answer) {
+      return 'border-red-400 bg-red-400 text-red-900';
+    }
+    return 'border-current';
   };
 
   return (
@@ -78,24 +97,14 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         {options.map((option) => (
           <button
             key={option.value}
-            onClick={() => !showExplanation && onAnswerSelect(option.value)}
-            disabled={showExplanation}
+            onClick={() => !showFeedback && !showExplanation && onAnswerSelect(option.value)}
+            disabled={showFeedback || showExplanation}
             className={`w-full text-left p-4 rounded-lg border-2 transition-all duration-200 ${getOptionStyle(option.value)} ${
-              !showExplanation ? 'hover:scale-[1.02] active:scale-[0.98]' : 'cursor-default'
+              !showFeedback && !showExplanation ? 'hover:scale-[1.02] active:scale-[0.98]' : 'cursor-default'
             }`}
           >
             <div className="flex items-center space-x-3">
-              <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-sm font-bold ${
-                selectedAnswer === option.value
-                  ? showExplanation
-                    ? option.value === question.correct_answer
-                      ? 'border-green-400 bg-green-400 text-green-900'
-                      : 'border-red-400 bg-red-400 text-red-900'
-                    : 'border-black bg-black text-lime-400'
-                  : option.value === question.correct_answer && showExplanation
-                    ? 'border-green-400 bg-green-400 text-green-900'
-                    : 'border-current'
-              }`}>
+              <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-sm font-bold ${getOptionCircleStyle(option.value)}`}>
                 {String.fromCharCode(64 + option.value)}
               </div>
               <span className="flex-1 font-medium">
@@ -106,7 +115,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         ))}
       </div>
 
-      {showExplanation && question.explanation && (
+      {(showFeedback || showExplanation) && question.explanation && (
         <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
           <h4 className="font-semibold text-blue-400 mb-2">Explanation</h4>
           <p className="text-gray-300 leading-relaxed">

@@ -14,6 +14,7 @@ import { LanguageSelector } from '../components/LanguageSelector';
 import { QuestionCard } from '../components/QuestionCard';
 import { ProgressBar } from '../components/ProgressBar';
 import { Timer } from '../components/Timer';
+import { QuestionTimer } from '../components/QuestionTimer';
 import { useLanguage } from '../contexts/LanguageProvider';
 import { supabaseAdmin } from '../lib/supabase-admin';
 import { Question } from '../types';
@@ -32,8 +33,10 @@ export const GuestPracticeTestPage: React.FC = () => {
   const [testCompleted, setTestCompleted] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [timeUp, setTimeUp] = useState(false);
+  const [showAnswerFeedback, setShowAnswerFeedback] = useState(false);
 
   const TEST_DURATION = 10 * 60; // 10 minutes in seconds
+  const QUESTION_DURATION = 30; // 30 seconds per question
 
   useEffect(() => {
     if (subject) {
@@ -85,21 +88,46 @@ export const GuestPracticeTestPage: React.FC = () => {
     const newAnswers = [...answers];
     newAnswers[currentQuestionIndex] = answer;
     setAnswers(newAnswers);
+    setShowAnswerFeedback(true);
+    
+    // Auto-advance after 2 seconds to show feedback
+    setTimeout(() => {
+      if (currentQuestionIndex < questions.length - 1) {
+        handleNextQuestion();
+      } else {
+        handleSubmitTest();
+      }
+    }, 2000);
   };
 
   const handleNextQuestion = () => {
+    setShowAnswerFeedback(false);
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
   };
 
   const handlePreviousQuestion = () => {
+    setShowAnswerFeedback(false);
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
   };
 
+  const handleQuestionTimeUp = () => {
+    // Auto-advance to next question when 30 seconds are up
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setShowAnswerFeedback(false);
+      toast.warning('Time up for this question!');
+    } else {
+      // If it's the last question, submit the test
+      handleSubmitTest();
+    }
+  };
+
   const handleSubmitTest = () => {
+    setShowAnswerFeedback(false);
     setTestCompleted(true);
     setShowResults(true);
   };
@@ -141,6 +169,7 @@ export const GuestPracticeTestPage: React.FC = () => {
   const handleRetakeTest = () => {
     setCurrentQuestionIndex(0);
     setAnswers(new Array(questions.length).fill(null));
+    setShowAnswerFeedback(false);
     setTestStarted(false);
     setTestCompleted(false);
     setShowResults(false);
@@ -238,8 +267,9 @@ export const GuestPracticeTestPage: React.FC = () => {
               <h3 className="text-xl font-bold text-white mb-4">Test Instructions</h3>
               <ul className="text-gray-300 space-y-2 text-left">
                 <li>• You have {TEST_DURATION / 60} minutes to complete the test</li>
+                <li>• Each question has a {QUESTION_DURATION}-second timer</li>
                 <li>• {questions.length} multiple choice questions</li>
-                <li>• You can navigate between questions</li>
+                <li>• Questions auto-advance when time expires or after selecting an answer</li>
                 <li>• Results will be shown immediately after completion</li>
                 <li>• You can retake the test as many times as you want</li>
               </ul>
@@ -256,12 +286,18 @@ export const GuestPracticeTestPage: React.FC = () => {
 
         {testStarted && !showResults && (
           <div className="space-y-6">
-            {/* Overall Timer and Progress */}
-            <div className="grid md:grid-cols-2 gap-4">
+            {/* Timers and Progress */}
+            <div className="grid md:grid-cols-3 gap-4">
               <Timer
                 duration={TEST_DURATION}
                 onTimeUp={handleTimeUp}
                 isActive={testStarted && !testCompleted}
+              />
+              <QuestionTimer
+                key={currentQuestionIndex}
+                duration={QUESTION_DURATION}
+                onTimeUp={handleQuestionTimeUp}
+                isActive={testStarted && !testCompleted && !showAnswerFeedback}
               />
               <ProgressBar
                 current={currentQuestionIndex + 1}
@@ -275,13 +311,14 @@ export const GuestPracticeTestPage: React.FC = () => {
               questionNumber={currentQuestionIndex + 1}
               selectedAnswer={answers[currentQuestionIndex]}
               onAnswerSelect={handleAnswerSelect}
+              showFeedback={showAnswerFeedback}
             />
 
             {/* Navigation */}
             <div className="flex justify-between items-center">
               <button
                 onClick={handlePreviousQuestion}
-                disabled={currentQuestionIndex === 0}
+                disabled={currentQuestionIndex === 0 || showAnswerFeedback}
                 className="bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-lg transition-colors"
               >
                 {t('previous')}
@@ -294,6 +331,7 @@ export const GuestPracticeTestPage: React.FC = () => {
               {currentQuestionIndex === questions.length - 1 ? (
                 <button
                   onClick={handleSubmitTest}
+                  disabled={showAnswerFeedback}
                   className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors"
                 >
                   {t('submit')}
@@ -301,6 +339,7 @@ export const GuestPracticeTestPage: React.FC = () => {
               ) : (
                 <button
                   onClick={handleNextQuestion}
+                  disabled={showAnswerFeedback}
                   className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors"
                 >
                   {t('next')}
