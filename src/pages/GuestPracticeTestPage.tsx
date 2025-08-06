@@ -315,13 +315,12 @@ export const GuestPracticeTestPage: React.FC = () => {
             />
 
             {/* Hidden Timer Component for Logic */}
-            <div className="hidden">
-              <Timer
-                duration={TEST_DURATION}
-                onTimeUp={handleTimeUp}
-                isActive={testStarted && !testCompleted}
-              />
-            </div>
+            <Timer
+              duration={TEST_DURATION}
+              onTimeUp={handleTimeUp}
+              isActive={testStarted && !testCompleted}
+              onTimeUpdate={handleTimeUpdate}
+            />
 
               {/* Question */}
               <QuestionCard

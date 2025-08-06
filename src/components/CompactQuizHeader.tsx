@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Target, TrendingUp } from 'lucide-react';
+import { Clock } from 'lucide-react';
 
 interface CompactQuizHeaderProps {
   timeRemaining: number;
@@ -22,7 +22,6 @@ export const CompactQuizHeader: React.FC<CompactQuizHeaderProps> = ({
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const progress = (currentQuestion / totalQuestions) * 100;
   const answeredQuestions = correctAnswers + wrongAnswers;
   const accuracy = answeredQuestions > 0 ? Math.round((correctAnswers / answeredQuestions) * 100) : 0;
 
@@ -34,12 +33,53 @@ export const CompactQuizHeader: React.FC<CompactQuizHeaderProps> = ({
     return 'text-lime-400';
   };
 
+  const getProgressColor = () => {
+    const totalDuration = 10 * 60; // 10 minutes
+    const percentage = (timeRemaining / totalDuration) * 100;
+    if (percentage <= 20) return '#ef4444'; // red-400
+    if (percentage <= 50) return '#facc15'; // yellow-400
+    return '#a3e635'; // lime-400
+  };
+
+  const progressPercentage = ((10 * 60 - timeRemaining) / (10 * 60)) * 100;
+  const circumference = 2 * Math.PI * 20; // radius = 20
+  const strokeDashoffset = circumference - (progressPercentage / 100) * circumference;
   return (
     <div className="bg-gray-900 rounded-xl p-4 mb-6">
       <div className="flex items-center justify-between gap-6">
         {/* Timer Section */}
-        <div className="flex items-center space-x-2 min-w-0">
-          <Clock size={18} className={getTimerColor()} />
+        <div className="flex items-center space-x-3 min-w-0">
+          {/* Round Progress Bar */}
+          <div className="relative w-12 h-12">
+            <svg className="w-12 h-12 transform -rotate-90" viewBox="0 0 44 44">
+              {/* Background circle */}
+              <circle
+                cx="22"
+                cy="22"
+                r="20"
+                stroke="#374151"
+                strokeWidth="3"
+                fill="none"
+              />
+              {/* Progress circle */}
+              <circle
+                cx="22"
+                cy="22"
+                r="20"
+                stroke={getProgressColor()}
+                strokeWidth="3"
+                fill="none"
+                strokeLinecap="round"
+                strokeDasharray={circumference}
+                strokeDashoffset={strokeDashoffset}
+                className="transition-all duration-1000 ease-out"
+              />
+            </svg>
+            {/* Clock icon in center */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Clock size={16} className={getTimerColor()} />
+            </div>
+          </div>
           <div className="text-sm">
             <div className={`font-mono font-bold ${getTimerColor()}`}>
               {formatTime(timeRemaining)}
@@ -50,19 +90,11 @@ export const CompactQuizHeader: React.FC<CompactQuizHeaderProps> = ({
 
         {/* Progress Section */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between mb-1">
-            <span className="text-sm font-medium text-white">
-              Question {currentQuestion} of {totalQuestions}
-            </span>
-            <span className="text-xs text-lime-400 font-medium">
-              {Math.round(progress)}%
-            </span>
-          </div>
-          <div className="w-full bg-gray-700 rounded-full h-2">
-            <div 
-              className="bg-gradient-to-r from-lime-400 to-lime-300 h-2 rounded-full transition-all duration-300"
-              style={{ width: `${progress}%` }}
-            />
+          <div className="text-center">
+            <div className="text-lg font-semibold text-white mb-1">
+              {currentQuestion} of {totalQuestions}
+            </div>
+            <div className="text-gray-400 text-xs">Questions</div>
           </div>
         </div>
 
