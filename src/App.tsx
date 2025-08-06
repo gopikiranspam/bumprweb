@@ -12,6 +12,7 @@ import { DashboardPage } from './pages/DashboardPage';
 import { GuestPracticeSelectionPage } from './pages/GuestPracticeSelectionPage';
 import { GuestPracticeTestPage } from './pages/GuestPracticeTestPage';
 import { GuestMockTestPage } from './pages/GuestMockTestPage';
+import { GuestStudyGuidePage } from './pages/GuestStudyGuidePage';
 
 // Loading component
 const LoadingSpinner: React.FC = () => (
@@ -78,6 +79,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/guest-practice" element={<GuestPracticeSelectionPage />} />
         <Route path="/guest-practice/:subject" element={<GuestPracticeTestPage />} />
         <Route path="/guest-mock-test" element={<GuestMockTestPage />} />
+        <Route path="/guest-study-guide" element={<GuestStudyGuidePage />} />
 
         {/* Default redirect */}
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
