@@ -123,17 +123,6 @@ export const GuestMockTestPage: React.FC = () => {
     }
   };
 
-  const handleQuestionTimeUp = () => {
-    // Auto-advance to next question when 30 seconds are up
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      toast.warning('Time up for this question!');
-    } else {
-      // If it's the last question, submit the test
-      handleSubmitTest();
-    }
-  };
-
   const handleSubmitTest = () => {
     setShowAnswerFeedback(false);
     setTestCompleted(true);
