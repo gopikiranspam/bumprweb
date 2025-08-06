@@ -204,7 +204,7 @@ export const AuthPage: React.FC = () => {
             <button
               onClick={() => navigate('/guest-practice')}
               disabled={loading}
-              className="w-full bg-gray-700 hover:bg-gray-600 disabled:bg-gray-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2"
+              className="w-full bg-lime-400 hover:bg-lime-300 disabled:bg-gray-600 text-black font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2"
             >
               <span>Continue as Guest</span>
             </button>

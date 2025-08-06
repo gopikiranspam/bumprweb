@@ -40,20 +40,41 @@ export const GuestStudyGuidePage: React.FC = () => {
         supabaseAdmin.getTestQuestions('driving_principles', language, 100)
       ]);
 
-      const allQuestions = [
-        ...(roadSignsResult || []),
-        ...(roadRulesResult || []),
-        ...(drivingPrinciplesResult || [])
-      ];
+      // Organize questions by subject
+      const roadSigns = roadSignsResult || [];
+      const roadRules = roadRulesResult || [];
+      const drivingPrinciples = drivingPrinciplesResult || [];
 
-      if (allQuestions.length === 0) {
+      // Shuffle each subject's questions individually
+      const shuffledRoadSigns = roadSigns.sort(() => Math.random() - 0.5);
+      const shuffledRoadRules = roadRules.sort(() => Math.random() - 0.5);
+      const shuffledDrivingPrinciples = drivingPrinciples.sort(() => Math.random() - 0.5);
+
+      // Interleave questions in sequence: Traffic Rules -> Safe Driving -> Road Signs
+      const interleavedQuestions = [];
+      const maxLength = Math.max(shuffledRoadRules.length, shuffledDrivingPrinciples.length, shuffledRoadSigns.length);
+      
+      for (let i = 0; i < maxLength; i++) {
+        // Add Traffic Rules question (road_rules)
+        if (i < shuffledRoadRules.length) {
+          interleavedQuestions.push(shuffledRoadRules[i]);
+        }
+        // Add Safe Driving question (driving_principles)
+        if (i < shuffledDrivingPrinciples.length) {
+          interleavedQuestions.push(shuffledDrivingPrinciples[i]);
+        }
+        // Add Road Signs question (road_signs)
+        if (i < shuffledRoadSigns.length) {
+          interleavedQuestions.push(shuffledRoadSigns[i]);
+        }
+      }
+
+      if (interleavedQuestions.length === 0) {
         toast.error('No questions available for LLR Test Syllabus');
         return;
       }
 
-      // Automatically shuffle the questions for randomized study
-      const shuffledQuestions = allQuestions.sort(() => Math.random() - 0.5);
-      setAllQuestions(shuffledQuestions);
+      setAllQuestions(interleavedQuestions);
     } catch (error: any) {
       console.error('Error loading questions:', error);
       toast.error('Failed to load LLR Test Syllabus questions');
