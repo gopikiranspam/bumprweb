@@ -66,10 +66,10 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
       <div className="space-y-4">
         <div className="flex items-start justify-between">
           <div className="flex items-center justify-between w-full">
-            <h3 className="text-lg font-semibold text-white">
+            <h3 className="text-base font-semibold text-white">
               Question {questionNumber}
             </h3>
-            <div className="text-lg font-semibold text-lime-400">
+            <div className="text-base font-semibold text-lime-400">
               {timerComponent}
             </div>
           </div>
@@ -95,7 +95,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           </div>
         )}
 
-        <p className="text-white text-lg leading-relaxed">
+        <p className="text-white text-base leading-relaxed">
           {question.question_text}
         </p>
       </div>
@@ -114,7 +114,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
               <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-sm font-bold ${getOptionCircleStyle(option.value)}`}>
                 {String.fromCharCode(64 + option.value)}
               </div>
-              <span className="flex-1 font-medium">
+              <span className="flex-1 font-medium text-sm leading-relaxed">
                 {option.text}
               </span>
             </div>
@@ -125,7 +125,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
       {(showFeedback || showExplanation) && question.explanation && (
         <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
           <h4 className="font-semibold text-blue-400 mb-2">Explanation</h4>
-          <p className="text-gray-300 leading-relaxed">
+          <p className="text-gray-300 text-sm leading-relaxed">
             {question.explanation}
           </p>
         </div>

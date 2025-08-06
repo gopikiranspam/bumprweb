@@ -462,7 +462,7 @@ export const GuestPracticeTestPage: React.FC = () => {
                     
                     <div className="text-sm space-y-1">
                       {result.userAnswer ? (
-                        <div className={result.isCorrect ? 'text-green-400' : 'text-red-400'}>
+                        <div className={`text-xs leading-relaxed ${result.isCorrect ? 'text-green-400' : 'text-red-400'}`}>
                           Your Answer: {
                             result.userAnswer === 1 ? result.question.option_a :
                             result.userAnswer === 2 ? result.question.option_b :
@@ -471,11 +471,11 @@ export const GuestPracticeTestPage: React.FC = () => {
                           }
                         </div>
                       ) : (
-                        <div className="text-gray-400">
+                        <div className="text-xs leading-relaxed text-gray-400">
                           Not Answered
                         </div>
                       )}
-                      <div className="text-green-400">
+                      <div className="text-xs leading-relaxed text-green-400">
                         Correct Answer: {
                           result.question.correct_answer === 1 ? result.question.option_a :
                           result.question.correct_answer === 2 ? result.question.option_b :
@@ -484,7 +484,7 @@ export const GuestPracticeTestPage: React.FC = () => {
                         }
                       </div>
                       {result.question.explanation && (
-                        <div className="text-gray-400 mt-2">
+                        <div className="text-xs leading-relaxed text-gray-400 mt-2">
                           <strong>Explanation:</strong> {result.question.explanation}
                         </div>
                       )}
