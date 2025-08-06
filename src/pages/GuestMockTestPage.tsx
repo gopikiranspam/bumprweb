@@ -305,7 +305,7 @@ export const GuestMockTestPage: React.FC = () => {
               timerComponent={
                 <QuestionTimer
                   key={currentQuestionIndex}
-                  duration={QUESTION_DURATION_PER_QUESTION}
+                  duration={QUESTION_DURATION}
                   onTimeUp={handleQuestionTimeUp}
                   isActive={testStarted && !testCompleted && !showAnswerFeedback}
                 />

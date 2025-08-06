@@ -24,10 +24,14 @@ export const QuestionTimer: React.FC<QuestionTimerProps> = ({ duration, onTimeUp
         }
         return prev - 1;
       });
-    }
-    )
-    return `${seconds}s`;
+    }, 1000);
+
+    return () => clearInterval(timer);
   }, [isActive, onTimeUp]);
+
+  const formatTime = (seconds: number): string => {
+    return `${seconds}s`;
+  };
 
   return (
     <span className="text-gray-400 font-mono text-sm ml-2">
