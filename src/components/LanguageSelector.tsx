@@ -18,16 +18,16 @@ export const LanguageSelector: React.FC = () => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 px-3 py-2 rounded-lg transition-colors"
+        className="flex items-center space-x-1 sm:space-x-2 bg-gray-800 hover:bg-gray-700 px-2 sm:px-3 py-2 rounded-lg transition-colors touch-target"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
       >
         <Globe size={16} className="text-lime-400" />
-        <span className="text-sm font-medium text-white min-w-[3rem]">
+        <span className="text-xs sm:text-sm font-medium text-white min-w-[2rem] sm:min-w-[3rem]">
           {currentLanguage?.native}
         </span>
         <ChevronDown 
-          size={14} 
+          size={12} 
           className={`text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} 
         />
       </button>
@@ -39,7 +39,7 @@ export const LanguageSelector: React.FC = () => {
             onClick={() => setIsOpen(false)}
             aria-hidden="true"
           />
-          <div className="absolute right-0 top-full mt-2 w-40 bg-gray-800 border border-gray-700 rounded-lg shadow-xl z-20">
+          <div className="absolute right-0 top-full mt-2 w-36 sm:w-40 bg-gray-800 border border-gray-700 rounded-lg shadow-xl z-20">
             {languages.map((lang) => (
               <button
                 key={lang.code}
@@ -47,7 +47,7 @@ export const LanguageSelector: React.FC = () => {
                   setLanguage(lang.code as 'en' | 'te' | 'hi');
                   setIsOpen(false);
                 }}
-                className={`w-full text-left px-4 py-3 text-sm hover:bg-gray-700 first:rounded-t-lg last:rounded-b-lg transition-colors ${
+                className={`w-full text-left px-3 sm:px-4 py-3 text-xs sm:text-sm hover:bg-gray-700 first:rounded-t-lg last:rounded-b-lg transition-colors touch-target ${
                   language === lang.code 
                     ? 'bg-lime-400/10 text-lime-400' 
                     : 'text-white'
@@ -56,7 +56,7 @@ export const LanguageSelector: React.FC = () => {
                 aria-selected={language === lang.code}
               >
                 <div className="font-medium">{lang.native}</div>
-                <div className="text-xs text-gray-400">{lang.name}</div>
+                <div className="text-xs text-gray-400 hidden sm:block">{lang.name}</div>
               </button>
             ))}
           </div>

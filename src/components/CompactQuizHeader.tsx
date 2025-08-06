@@ -45,20 +45,20 @@ export const CompactQuizHeader: React.FC<CompactQuizHeaderProps> = ({
   const circumference = 2 * Math.PI * 20; // radius = 20
   const strokeDashoffset = circumference - (progressPercentage / 100) * circumference;
   return (
-    <div className="bg-gray-900 rounded-xl p-4 mb-6">
-      <div className="flex items-center justify-between gap-6">
+    <div className="bg-gray-900 rounded-xl p-3 sm:p-4 mb-4 sm:mb-6">
+      <div className="flex items-center justify-between gap-2 sm:gap-4 lg:gap-6">
         {/* Timer Section */}
-        <div className="flex items-center space-x-3 min-w-0">
+        <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-shrink-0">
           {/* Round Progress Bar */}
-          <div className="relative w-12 h-12">
-            <svg className="w-12 h-12 transform -rotate-90" viewBox="0 0 44 44">
+          <div className="relative w-10 h-10 sm:w-12 sm:h-12">
+            <svg className="w-10 h-10 sm:w-12 sm:h-12 transform -rotate-90" viewBox="0 0 44 44">
               {/* Background circle */}
               <circle
                 cx="22"
                 cy="22"
                 r="20"
                 stroke="#374151"
-                strokeWidth="3"
+                strokeWidth="2.5"
                 fill="none"
               />
               {/* Progress circle */}
@@ -67,7 +67,7 @@ export const CompactQuizHeader: React.FC<CompactQuizHeaderProps> = ({
                 cy="22"
                 r="20"
                 stroke={getProgressColor()}
-                strokeWidth="3"
+                strokeWidth="2.5"
                 fill="none"
                 strokeLinecap="round"
                 strokeDasharray={circumference}
@@ -77,39 +77,39 @@ export const CompactQuizHeader: React.FC<CompactQuizHeaderProps> = ({
             </svg>
             {/* Clock icon in center */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <Clock size={16} className={getTimerColor()} />
+              <Clock size={14} className={`${getTimerColor()} sm:w-4 sm:h-4`} />
             </div>
           </div>
-          <div className="text-sm">
-            <div className={`font-mono font-bold text-lg ${getTimerColor()}`}>
+          <div className="text-xs sm:text-sm">
+            <div className={`font-mono font-bold text-base sm:text-lg ${getTimerColor()}`}>
               {formatTime(timeRemaining)}
             </div>
-            <div className="text-gray-400 text-xs">Time Left</div>
+            <div className="text-gray-400 text-xs hidden sm:block">Time Left</div>
           </div>
         </div>
 
         {/* Progress Section */}
-        <div className="flex-1 min-w-0">
-          <div className="text-center">
-            <div className="text-lg font-semibold text-white mb-1">
+        <div className="flex-1 min-w-0 text-center">
+          <div>
+            <div className="text-sm sm:text-lg font-semibold text-white mb-1">
               {currentQuestion} of {totalQuestions}
             </div>
-            <div className="text-gray-400 text-xs">Questions</div>
+            <div className="text-gray-400 text-xs hidden sm:block">Questions</div>
           </div>
         </div>
 
         {/* Score Section */}
-        <div className="flex items-center space-x-4 min-w-0">
-          <div className="flex items-center space-x-1">
-            <span className="text-green-400 font-bold text-lg">{correctAnswers}</span>
-            <span className="text-green-400 text-sm">✓</span>
+        <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-shrink-0">
+          <div className="flex items-center space-x-0.5 sm:space-x-1">
+            <span className="text-green-400 font-bold text-sm sm:text-lg">{correctAnswers}</span>
+            <span className="text-green-400 text-xs sm:text-sm">✓</span>
           </div>
-          <div className="flex items-center space-x-1">
-            <span className="text-red-400 font-bold text-lg">{wrongAnswers}</span>
-            <span className="text-red-400 text-sm">✗</span>
+          <div className="flex items-center space-x-0.5 sm:space-x-1">
+            <span className="text-red-400 font-bold text-sm sm:text-lg">{wrongAnswers}</span>
+            <span className="text-red-400 text-xs sm:text-sm">✗</span>
           </div>
           {answeredQuestions > 0 && (
-            <div className="text-xs text-gray-400">
+            <div className="text-xs text-gray-400 hidden sm:block">
               {accuracy}%
             </div>
           )}
