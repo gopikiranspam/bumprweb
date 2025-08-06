@@ -202,7 +202,7 @@ export const GuestStudyGuidePage: React.FC = () => {
           <div className="hidden sm:block">
             <h1 className="text-lg font-semibold text-white flex items-center space-x-2">
               <BookOpen size={20} className="text-lime-400" />
-              <span>LLR Test Syllabus</span>
+              <span>LLR Syllabus</span>
             </h1>
           </div>
         </div>
@@ -220,7 +220,7 @@ export const GuestStudyGuidePage: React.FC = () => {
         <div className="text-center mb-8">
           <div className="mb-6">
             <button className="bg-lime-400 hover:bg-lime-300 text-black font-bold py-3 px-8 rounded-lg text-2xl transition-colors mb-2">
-              LLR Test Syllabus
+              LLR Syllabus
             </button>
             <p className="text-gray-400 text-base">
               As per India Motor Vehicles Act, 1988

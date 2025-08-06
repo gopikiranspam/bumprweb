@@ -156,7 +156,7 @@ export const GuestPracticeSelectionPage: React.FC = () => {
           <div className="bg-gradient-to-r from-lime-400/10 to-green-400/10 border border-lime-400/30 rounded-xl p-6 text-center">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <BookOpen size={32} className="text-lime-400" />
-              <h2 className="text-2xl font-bold text-white">LLR Test Syllabus</h2>
+              <h2 className="text-xl font-bold text-white">LLR Syllabus</h2>
             </div>
             <button
               onClick={() => navigate('/guest-study-guide')}
