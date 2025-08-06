@@ -66,33 +66,56 @@ export const GuestPracticeSelectionPage: React.FC = () => {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Guest Mode Notice */}
-        <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4 mb-8">
-          <div className="flex items-start space-x-3">
-            <User size={20} className="text-yellow-400 flex-shrink-0 mt-0.5" />
-            <div>
-              <h3 className="font-semibold text-yellow-400 mb-1">Guest Mode</h3>
-              <p className="text-yellow-300 text-sm">
-                You're practicing as a guest. Your progress and results won't be saved. 
-                <button
-                  onClick={() => navigate('/auth')}
-                  className="text-yellow-400 hover:text-yellow-300 underline ml-1"
-                >
-                  Sign up
-                </button>
-                {' '}to track your progress and access all features.
-              </p>
+        {/* Hero Section with Key Selling Points */}
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center space-x-3 mb-6">
+            <div className="w-12 h-8 bg-gradient-to-b from-orange-500 via-white to-green-500 rounded-sm border border-gray-300 flex items-center justify-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-orange-500 via-white to-green-500"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-6 h-6 rounded-full border-2 border-blue-800 flex items-center justify-center">
+                  <div className="w-4 h-4 rounded-full bg-blue-800 flex items-center justify-center">
+                    <div className="w-1 h-1 bg-white rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h1 className="text-4xl font-bold text-white">
+              Bumpr <span className="text-lime-400">India</span>
+            </h1>
+          </div>
+          
+          <p className="text-xl text-gray-300 mb-8">
+            India's #1 RTO Test Preparation Platform
+          </p>
+          
+          {/* Key Selling Points */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div className="bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/30 rounded-xl p-4">
+              <div className="text-2xl font-bold text-green-400 mb-1">99%</div>
+              <div className="text-green-300 text-sm">Pass Rate</div>
+            </div>
+            <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/10 border border-blue-500/30 rounded-xl p-4">
+              <div className="text-2xl font-bold text-blue-400 mb-1">5min</div>
+              <div className="text-blue-300 text-sm">Daily Practice</div>
+            </div>
+            <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/30 rounded-xl p-4">
+              <div className="text-2xl font-bold text-purple-400 mb-1">All</div>
+              <div className="text-purple-300 text-sm">Indian States</div>
+            </div>
+            <div className="bg-gradient-to-br from-orange-500/20 to-orange-600/10 border border-orange-500/30 rounded-xl p-4">
+              <div className="text-2xl font-bold text-orange-400 mb-1">RTO</div>
+              <div className="text-orange-300 text-sm">Approved</div>
             </div>
           </div>
         </div>
 
-        {/* Welcome Section */}
+        {/* Insights Section */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-white mb-2">
-            Practice Tests
+            Insights
           </h1>
           <p className="text-gray-400 text-lg">
-            Choose a subject to start practicing for your driving test
+            All the questions and answers as per India Motor Vehicles Act, 1988
           </p>
         </div>
 
@@ -148,29 +171,42 @@ export const GuestPracticeSelectionPage: React.FC = () => {
         </div>
 
         {/* Features Notice */}
-        <div className="bg-gray-900 rounded-xl p-6">
-          <h2 className="text-xl font-bold text-white mb-4 flex items-center space-x-2">
-            <AlertCircle size={20} className="text-lime-400" />
-            <span>Guest Practice Features</span>
+        <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700">
+          <h2 className="text-xl font-bold text-white mb-4 text-center flex items-center justify-center space-x-2">
+            <div className="w-6 h-4 bg-gradient-to-b from-orange-500 via-white to-green-500 rounded-sm"></div>
+            <span>Trusted Across India</span>
           </h2>
-          <div className="grid md:grid-cols-2 gap-4 text-sm">
-            <div className="space-y-2">
-              <h3 className="font-semibold text-lime-400">Available:</h3>
-              <ul className="text-gray-300 space-y-1">
-                <li>• Practice questions in all subjects</li>
-                <li>• Multi-language support</li>
-                <li>• Instant feedback and explanations</li>
-                <li>• Unlimited practice attempts</li>
-              </ul>
+          <div className="text-center space-y-4">
+            <p className="text-gray-300 text-lg">
+              Questions validated by RTO authorities and updated according to the latest Motor Vehicles Act, 1988
+            </p>
+            <div className="flex flex-wrap justify-center gap-2 text-sm">
+              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">Maharashtra</span>
+              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">Karnataka</span>
+              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">Tamil Nadu</span>
+              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">Delhi</span>
+              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">Gujarat</span>
+              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">+ 23 More States</span>
             </div>
-            <div className="space-y-2">
-              <h3 className="font-semibold text-red-400">Not Available:</h3>
-              <ul className="text-gray-300 space-y-1">
-                <li>• Progress tracking</li>
-                <li>• Test result history</li>
-                <li>• Performance analytics</li>
-                <li>• Personalized recommendations</li>
-              </ul>
+          </div>
+        </div>
+        
+        {/* Guest Mode Notice - Moved to Bottom */}
+        <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4 mt-8">
+          <div className="flex items-start space-x-3">
+            <User size={20} className="text-yellow-400 flex-shrink-0 mt-0.5" />
+            <div>
+              <h3 className="font-semibold text-yellow-400 mb-1">Guest Mode</h3>
+              <p className="text-yellow-300 text-sm">
+                You're practicing as a guest. Your progress and results won't be saved. 
+                <button
+                  onClick={() => navigate('/auth')}
+                  className="text-yellow-400 hover:text-yellow-300 underline ml-1"
+                >
+                  Sign up
+                </button>
+                {' '}to track your progress and access all features.
+              </p>
             </div>
           </div>
         </div>

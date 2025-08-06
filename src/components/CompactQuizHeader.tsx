@@ -81,7 +81,7 @@ export const CompactQuizHeader: React.FC<CompactQuizHeaderProps> = ({
             </div>
           </div>
           <div className="text-sm">
-            <div className={`font-mono font-bold ${getTimerColor()}`}>
+            <div className={`font-mono font-bold text-lg ${getTimerColor()}`}>
               {formatTime(timeRemaining)}
             </div>
             <div className="text-gray-400 text-xs">Time Left</div>

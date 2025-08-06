@@ -260,7 +260,25 @@ export const GuestMockTestPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Guest Notice */}
+            <div className="bg-gray-900 rounded-xl p-6 max-w-2xl mx-auto">
+              <h3 className="text-xl font-bold text-white mb-4">Mock Test Instructions</h3>
+              <ul className="text-gray-300 space-y-2 text-left">
+                <li>• You have {TEST_DURATION / 60} minutes to complete the test</li>
+                <li>• Each question has a 30-second timer</li>
+                <li>• {questions.length} questions from all subjects (Road Signs, Traffic Rules, Safe Driving)</li>
+                <li>• Questions auto-advance when time expires or after selecting an answer</li>
+                <li>• Results will be shown immediately after completion</li>
+              </ul>
+            </div>
+
+            <button
+              onClick={handleStartTest}
+              className="bg-lime-400 hover:bg-lime-300 text-black font-bold py-4 px-8 rounded-lg text-lg transition-colors"
+            >
+              Start Mock Test
+            </button>
+            
+            {/* Guest Notice - Moved to Bottom */}
             <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-6 max-w-2xl mx-auto">
               <div className="flex items-start space-x-3">
                 <User size={24} className="text-yellow-400 flex-shrink-0 mt-1" />
@@ -279,24 +297,6 @@ export const GuestMockTestPage: React.FC = () => {
                 </div>
               </div>
             </div>
-
-            <div className="bg-gray-900 rounded-xl p-6 max-w-2xl mx-auto">
-              <h3 className="text-xl font-bold text-white mb-4">Mock Test Instructions</h3>
-              <ul className="text-gray-300 space-y-2 text-left">
-                <li>• You have {TEST_DURATION / 60} minutes to complete the test</li>
-                <li>• Each question has a 30-second timer</li>
-                <li>• {questions.length} questions from all subjects (Road Signs, Traffic Rules, Safe Driving)</li>
-                <li>• Questions auto-advance when time expires or after selecting an answer</li>
-                <li>• Results will be shown immediately after completion</li>
-              </ul>
-            </div>
-
-            <button
-              onClick={handleStartTest}
-              className="bg-lime-400 hover:bg-lime-300 text-black font-bold py-4 px-8 rounded-lg text-lg transition-colors"
-            >
-              Start Mock Test
-            </button>
           </div>
         )}
 

@@ -262,26 +262,6 @@ export const GuestPracticeTestPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Guest Notice */}
-            <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-6 max-w-2xl mx-auto">
-              <div className="flex items-start space-x-3">
-                <User size={24} className="text-yellow-400 flex-shrink-0 mt-1" />
-                <div className="text-left">
-                  <h3 className="font-semibold text-yellow-400 mb-2">Guest Practice Mode</h3>
-                  <p className="text-yellow-300 text-sm mb-3">
-                    You're taking this test as a guest. Your results won't be saved or tracked.
-                  </p>
-                  <button
-                    onClick={() => navigate('/auth')}
-                    className="inline-flex items-center space-x-2 bg-yellow-400 hover:bg-yellow-300 text-black font-medium py-2 px-4 rounded-lg transition-colors text-sm"
-                  >
-                    <LogIn size={16} />
-                    <span>Sign up to save results</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
             <div className="bg-gray-900 rounded-xl p-6 max-w-2xl mx-auto">
               <h3 className="text-xl font-bold text-white mb-4">Test Instructions</h3>
               <ul className="text-gray-300 space-y-2 text-left">
@@ -300,6 +280,26 @@ export const GuestPracticeTestPage: React.FC = () => {
             >
               Start Practice Test
             </button>
+            
+            {/* Guest Notice - Moved to Bottom */}
+            <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-6 max-w-2xl mx-auto">
+              <div className="flex items-start space-x-3">
+                <User size={24} className="text-yellow-400 flex-shrink-0 mt-1" />
+                <div className="text-left">
+                  <h3 className="font-semibold text-yellow-400 mb-2">Guest Practice Mode</h3>
+                  <p className="text-yellow-300 text-sm mb-3">
+                    You're taking this test as a guest. Your results won't be saved or tracked.
+                  </p>
+                  <button
+                    onClick={() => navigate('/auth')}
+                    className="inline-flex items-center space-x-2 bg-yellow-400 hover:bg-yellow-300 text-black font-medium py-2 px-4 rounded-lg transition-colors text-sm"
+                  >
+                    <LogIn size={16} />
+                    <span>Sign up to save results</span>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
