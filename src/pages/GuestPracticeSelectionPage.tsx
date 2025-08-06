@@ -152,19 +152,13 @@ export const GuestPracticeSelectionPage: React.FC = () => {
         </div>
 
         {/* LLR Complete Syllabus Button */}
-        <div className="mb-8">
-          <div className="bg-gradient-to-r from-lime-400/10 to-green-400/10 border border-lime-400/30 rounded-xl p-6 text-center">
-            <div className="flex items-center justify-center space-x-3 mb-4">
-              <BookOpen size={32} className="text-lime-400" />
-              <h2 className="text-lg font-bold text-white">LLR Complete Syllabus</h2>
-            </div>
-            <button
-              onClick={() => navigate('/guest-study-guide')}
-              className="bg-lime-400 hover:bg-lime-300 text-black font-bold py-3 px-8 rounded-lg text-lg transition-colors"
-            >
-              Start
-            </button>
-          </div>
+        <div className="mb-8 text-center">
+          <button
+            onClick={() => navigate('/guest-study-guide')}
+            className="bg-lime-400 hover:bg-lime-300 text-black font-bold py-3 px-8 rounded-lg text-lg transition-colors"
+          >
+            Start
+          </button>
         </div>
 
         {/* Guest Mode Notice - Moved to Bottom */}
