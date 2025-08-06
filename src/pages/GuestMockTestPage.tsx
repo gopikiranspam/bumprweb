@@ -13,10 +13,9 @@ import {
 import { Logo } from '../components/Logo';
 import { LanguageSelector } from '../components/LanguageSelector';
 import { QuestionCard } from '../components/QuestionCard';
-import { ProgressBar } from '../components/ProgressBar';
 import { Timer } from '../components/Timer';
 import { QuestionTimer } from '../components/QuestionTimer';
-import { ScoreTracker } from '../components/ScoreTracker';
+import { CompactQuizHeader } from '../components/CompactQuizHeader';
 import { useLanguage } from '../contexts/LanguageProvider';
 import { supabaseAdmin } from '../lib/supabase-admin';
 import { Question } from '../types';
@@ -37,6 +36,7 @@ export const GuestMockTestPage: React.FC = () => {
   const [showAnswerFeedback, setShowAnswerFeedback] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [wrongAnswers, setWrongAnswers] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState(TEST_DURATION);
 
   const TEST_DURATION = 10 * 60; // 10 minutes in seconds
   const QUESTION_DURATION = 30; // 30 seconds per question
@@ -141,10 +141,15 @@ export const GuestMockTestPage: React.FC = () => {
   };
 
   const handleTimeUp = () => {
+    setTimeRemaining(0);
     setTimeUp(true);
     setTestCompleted(true);
     setShowResults(true);
     toast.warning('Time is up! Test submitted automatically.');
+  };
+
+  const handleTimeUpdate = (remaining: number) => {
+    setTimeRemaining(remaining);
   };
 
   const calculateResults = () => {
@@ -179,6 +184,7 @@ export const GuestMockTestPage: React.FC = () => {
     setAnswers(new Array(questions.length).fill(null));
     setCorrectAnswers(0);
     setWrongAnswers(0);
+    setTimeRemaining(TEST_DURATION);
     setShowAnswerFeedback(false);
     setTestStarted(false);
     setTestCompleted(false);
@@ -295,30 +301,24 @@ export const GuestMockTestPage: React.FC = () => {
         )}
 
         {testStarted && !showResults && (
-          <div className="grid lg:grid-cols-4 gap-6">
-            {/* Left Side - Score Tracker */}
-            <div className="lg:col-span-1">
-              <ScoreTracker
-                correctAnswers={correctAnswers}
-                wrongAnswers={wrongAnswers}
-                totalQuestions={questions.length}
+          <div className="space-y-6">
+            {/* Compact Header with Timer, Progress, and Score */}
+            <CompactQuizHeader
+              timeRemaining={timeRemaining}
+              currentQuestion={currentQuestionIndex + 1}
+              totalQuestions={questions.length}
+              correctAnswers={correctAnswers}
+              wrongAnswers={wrongAnswers}
+            />
+
+            {/* Hidden Timer Component for Logic */}
+            <div className="hidden">
+              <Timer
+                duration={TEST_DURATION}
+                onTimeUp={handleTimeUp}
+                isActive={testStarted && !testCompleted}
               />
             </div>
-
-            {/* Right Side - Quiz Content */}
-            <div className="lg:col-span-3 space-y-6">
-              {/* Timers and Progress */}
-              <div className="grid md:grid-cols-2 gap-4">
-                <Timer
-                  duration={TEST_DURATION}
-                  onTimeUp={handleTimeUp}
-                  isActive={testStarted && !testCompleted}
-                />
-                <ProgressBar
-                  current={currentQuestionIndex + 1}
-                  total={questions.length}
-                />
-              </div>
 
               {/* Question */}
               <QuestionCard
@@ -369,7 +369,6 @@ export const GuestMockTestPage: React.FC = () => {
                   </button>
                 )}
               </div>
-            </div>
           </div>
         )}
 

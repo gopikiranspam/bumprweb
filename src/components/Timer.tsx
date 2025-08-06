@@ -5,9 +5,10 @@ interface TimerProps {
   duration: number; // in seconds
   onTimeUp: () => void;
   isActive: boolean;
+  onTimeUpdate?: (remaining: number) => void;
 }
 
-export const Timer: React.FC<TimerProps> = ({ duration, onTimeUp, isActive }) => {
+export const Timer: React.FC<TimerProps> = ({ duration, onTimeUp, isActive, onTimeUpdate }) => {
   const [timeLeft, setTimeLeft] = useState(duration);
 
   useEffect(() => {
@@ -19,11 +20,15 @@ export const Timer: React.FC<TimerProps> = ({ duration, onTimeUp, isActive }) =>
 
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
+        const newTime = prev <= 1 ? 0 : prev - 1;
+        if (onTimeUpdate) {
+          onTimeUpdate(newTime);
+        }
         if (prev <= 1) {
           onTimeUp();
           return 0;
         }
-        return prev - 1;
+        return newTime;
       });
     }, 1000);
 
