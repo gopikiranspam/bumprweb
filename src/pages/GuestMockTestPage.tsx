@@ -25,6 +25,9 @@ export const GuestMockTestPage: React.FC = () => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
 
+  const TEST_DURATION = 10 * 60; // 10 minutes in seconds
+  const QUESTION_DURATION = 30; // 30 seconds per question
+
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Array<number | null>>([]);
@@ -37,9 +40,6 @@ export const GuestMockTestPage: React.FC = () => {
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [wrongAnswers, setWrongAnswers] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(TEST_DURATION);
-
-  const TEST_DURATION = 10 * 60; // 10 minutes in seconds
-  const QUESTION_DURATION = 30; // 30 seconds per question
 
   useEffect(() => {
     loadQuestions();
