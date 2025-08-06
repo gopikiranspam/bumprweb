@@ -243,9 +243,6 @@ export const GuestStudyGuidePage: React.FC = () => {
             <button className="bg-lime-400 hover:bg-lime-300 text-black font-bold py-3 px-8 rounded-lg text-2xl transition-colors mb-2">
               LLR Complete Syllabus
             </button>
-            <p className="text-gray-400 text-base">
-              As per India Motor Vehicles Act, 1988
-            </p>
           </div>
         </div>
 
