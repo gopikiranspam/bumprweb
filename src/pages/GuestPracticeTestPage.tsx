@@ -15,6 +15,7 @@ import { QuestionCard } from '../components/QuestionCard';
 import { ProgressBar } from '../components/ProgressBar';
 import { Timer } from '../components/Timer';
 import { QuestionTimer } from '../components/QuestionTimer';
+import { ScoreTracker } from '../components/ScoreTracker';
 import { useLanguage } from '../contexts/LanguageProvider';
 import { supabaseAdmin } from '../lib/supabase-admin';
 import { Question } from '../types';
@@ -34,6 +35,8 @@ export const GuestPracticeTestPage: React.FC = () => {
   const [showResults, setShowResults] = useState(false);
   const [timeUp, setTimeUp] = useState(false);
   const [showAnswerFeedback, setShowAnswerFeedback] = useState(false);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [wrongAnswers, setWrongAnswers] = useState(0);
 
   const TEST_DURATION = 10 * 60; // 10 minutes in seconds
   const QUESTION_DURATION = 30; // 30 seconds per question
@@ -88,6 +91,15 @@ export const GuestPracticeTestPage: React.FC = () => {
     const newAnswers = [...answers];
     newAnswers[currentQuestionIndex] = answer;
     setAnswers(newAnswers);
+    
+    // Update score tracker
+    const isCorrect = answer === questions[currentQuestionIndex].correct_answer;
+    if (isCorrect) {
+      setCorrectAnswers(prev => prev + 1);
+    } else {
+      setWrongAnswers(prev => prev + 1);
+    }
+    
     setShowAnswerFeedback(true);
     
     // Auto-advance after 2 seconds to show feedback
@@ -168,6 +180,8 @@ export const GuestPracticeTestPage: React.FC = () => {
   const handleRetakeTest = () => {
     setCurrentQuestionIndex(0);
     setAnswers(new Array(questions.length).fill(null));
+    setCorrectAnswers(0);
+    setWrongAnswers(0);
     setShowAnswerFeedback(false);
     setTestStarted(false);
     setTestCompleted(false);
@@ -284,68 +298,80 @@ export const GuestPracticeTestPage: React.FC = () => {
         )}
 
         {testStarted && !showResults && (
-          <div className="space-y-6">
-            {/* Timers and Progress */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <Timer
-                duration={TEST_DURATION}
-                onTimeUp={handleTimeUp}
-                isActive={testStarted && !testCompleted}
-              />
-              <ProgressBar
-                current={currentQuestionIndex + 1}
-                total={questions.length}
+          <div className="grid lg:grid-cols-4 gap-6">
+            {/* Left Side - Score Tracker */}
+            <div className="lg:col-span-1">
+              <ScoreTracker
+                correctAnswers={correctAnswers}
+                wrongAnswers={wrongAnswers}
+                totalQuestions={questions.length}
               />
             </div>
 
-            {/* Question */}
-            <QuestionCard
-              question={questions[currentQuestionIndex]}
-              questionNumber={currentQuestionIndex + 1}
-              selectedAnswer={answers[currentQuestionIndex]}
-              onAnswerSelect={handleAnswerSelect}
-              showFeedback={showAnswerFeedback}
-              timerComponent={
-                <QuestionTimer
-                  key={currentQuestionIndex}
-                  duration={QUESTION_DURATION}
-                  onTimeUp={handleQuestionTimeUp}
-                  isActive={testStarted && !testCompleted && !showAnswerFeedback}
+            {/* Right Side - Quiz Content */}
+            <div className="lg:col-span-3 space-y-6">
+              {/* Timers and Progress */}
+              <div className="grid md:grid-cols-2 gap-4">
+                <Timer
+                  duration={TEST_DURATION}
+                  onTimeUp={handleTimeUp}
+                  isActive={testStarted && !testCompleted}
                 />
-              }
-            />
+                <ProgressBar
+                  current={currentQuestionIndex + 1}
+                  total={questions.length}
+                />
+              </div>
 
-            {/* Navigation */}
-            <div className="flex justify-between items-center">
-              <button
-                onClick={handlePreviousQuestion}
-                disabled={currentQuestionIndex === 0 || showAnswerFeedback}
-                className="bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-lg transition-colors"
-              >
-                {t('previous')}
-              </button>
+              {/* Question */}
+              <QuestionCard
+                question={questions[currentQuestionIndex]}
+                questionNumber={currentQuestionIndex + 1}
+                selectedAnswer={answers[currentQuestionIndex]}
+                onAnswerSelect={handleAnswerSelect}
+                showFeedback={showAnswerFeedback}
+                timerComponent={
+                  <QuestionTimer
+                    key={currentQuestionIndex}
+                    duration={QUESTION_DURATION}
+                    onTimeUp={handleQuestionTimeUp}
+                    isActive={testStarted && !testCompleted && !showAnswerFeedback}
+                  />
+                }
+              />
 
-              <span className="text-gray-400">
-                Question {currentQuestionIndex + 1} of {questions.length}
-              </span>
-
-              {currentQuestionIndex === questions.length - 1 ? (
+              {/* Navigation */}
+              <div className="flex justify-between items-center">
                 <button
-                  onClick={handleSubmitTest}
-                  disabled={showAnswerFeedback}
-                  className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors"
+                  onClick={handlePreviousQuestion}
+                  disabled={currentQuestionIndex === 0 || showAnswerFeedback}
+                  className="bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-lg transition-colors"
                 >
-                  {t('submit')}
+                  {t('previous')}
                 </button>
-              ) : (
-                <button
-                  onClick={handleNextQuestion}
-                  disabled={showAnswerFeedback}
-                  className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors"
-                >
-                  {t('next')}
-                </button>
-              )}
+
+                <span className="text-gray-400">
+                  Question {currentQuestionIndex + 1} of {questions.length}
+                </span>
+
+                {currentQuestionIndex === questions.length - 1 ? (
+                  <button
+                    onClick={handleSubmitTest}
+                    disabled={showAnswerFeedback}
+                    className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors"
+                  >
+                    {t('submit')}
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleNextQuestion}
+                    disabled={showAnswerFeedback}
+                    className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors"
+                  >
+                    {t('next')}
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         )}
