@@ -53,16 +53,6 @@ export const Timer: React.FC<TimerProps> = ({ duration, onTimeUp, isActive, onTi
   };
 
   return (
-    <div className="bg-gray-900 p-4 rounded-lg">
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center space-x-2">
-          <Clock size={20} className={getTimerColor()} />
-          <span className="text-white font-medium">Time Remaining</span>
-        </div>
-        <span className={`font-mono text-xl font-bold ${getTimerColor()}`}>
-          {formatTime(timeLeft)}
-        </span>
-      </div>
-    </div>
+    null
   );
 };
