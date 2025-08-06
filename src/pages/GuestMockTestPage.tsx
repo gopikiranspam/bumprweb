@@ -116,7 +116,6 @@ export const GuestMockTestPage: React.FC = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setShowAnswerFeedback(false);
-      toast.warning('Time up for this question!');
     } else {
       // If it's the last question, submit the test
       handleSubmitTest();
@@ -265,7 +264,7 @@ export const GuestMockTestPage: React.FC = () => {
               <h3 className="text-xl font-bold text-white mb-4">Mock Test Instructions</h3>
               <ul className="text-gray-300 space-y-2 text-left">
                 <li>• You have {TEST_DURATION / 60} minutes to complete the test</li>
-                <li>• Each question has a {QUESTION_DURATION}-second timer</li>
+                <li>• Each question has a 30-second timer</li>
                 <li>• {questions.length} questions from all subjects (Road Signs, Traffic Rules, Safe Driving)</li>
                 <li>• Questions auto-advance when time expires or after selecting an answer</li>
                 <li>• Results will be shown immediately after completion</li>
@@ -284,17 +283,11 @@ export const GuestMockTestPage: React.FC = () => {
         {testStarted && !showResults && (
           <div className="space-y-6">
             {/* Timers and Progress */}
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 gap-4">
               <Timer
                 duration={TEST_DURATION}
                 onTimeUp={handleTimeUp}
                 isActive={testStarted && !testCompleted}
-              />
-              <QuestionTimer
-                key={currentQuestionIndex}
-                duration={QUESTION_DURATION}
-                onTimeUp={handleQuestionTimeUp}
-                isActive={testStarted && !testCompleted && !showAnswerFeedback}
               />
               <ProgressBar
                 current={currentQuestionIndex + 1}
@@ -309,6 +302,14 @@ export const GuestMockTestPage: React.FC = () => {
               selectedAnswer={answers[currentQuestionIndex]}
               onAnswerSelect={handleAnswerSelect}
               showFeedback={showAnswerFeedback}
+              timerComponent={
+                <QuestionTimer
+                  key={currentQuestionIndex}
+                  duration={QUESTION_DURATION_PER_QUESTION}
+                  onTimeUp={handleQuestionTimeUp}
+                  isActive={testStarted && !testCompleted && !showAnswerFeedback}
+                />
+              }
             />
 
             {/* Navigation */}

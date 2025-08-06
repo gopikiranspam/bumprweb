@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Clock } from 'lucide-react';
 
 interface QuestionTimerProps {
   duration: number; // in seconds
@@ -25,47 +24,12 @@ export const QuestionTimer: React.FC<QuestionTimerProps> = ({ duration, onTimeUp
         }
         return prev - 1;
       });
-    }, 1000);
-
-    return () => clearInterval(timer);
+    return `${seconds}s`;
   }, [isActive, onTimeUp]);
 
-  const getTimerColor = () => {
-    const percentage = (timeLeft / duration) * 100;
-    if (percentage <= 20) return 'text-red-400';
-    if (percentage <= 50) return 'text-yellow-400';
-    return 'text-lime-400';
-  };
-
-  const getProgressWidth = () => {
-    return `${(timeLeft / duration) * 100}%`;
-  };
-
-  const getBgColor = () => {
-    const percentage = (timeLeft / duration) * 100;
-    if (percentage <= 20) return 'bg-red-400';
-    if (percentage <= 50) return 'bg-yellow-400';
-    return 'bg-lime-400';
-  };
-
   return (
-    <div className="bg-gray-800 p-3 rounded-lg border border-gray-700">
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center space-x-2">
-          <Clock size={16} className={getTimerColor()} />
-          <span className="text-white font-medium text-sm">Question Timer</span>
-        </div>
-        <span className={`font-mono text-lg font-bold ${getTimerColor()}`}>
-          {timeLeft}s
-        </span>
-      </div>
-      
-      <div className="w-full bg-gray-700 rounded-full h-2">
-        <div 
-          className={`h-2 rounded-full transition-all duration-1000 ${getBgColor()}`}
-          style={{ width: getProgressWidth() }}
-        />
-      </div>
-    </div>
+    <span className="text-gray-400 font-mono text-sm ml-2">
+      [{formatTime(timeLeft)}]
+    </span>
   );
 };

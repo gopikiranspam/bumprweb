@@ -8,6 +8,7 @@ interface QuestionCardProps {
   onAnswerSelect: (answer: number) => void;
   showFeedback?: boolean;
   showExplanation?: boolean;
+  timerComponent?: React.ReactNode;
 }
 
 export const QuestionCard: React.FC<QuestionCardProps> = ({
@@ -17,6 +18,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   onAnswerSelect,
   showFeedback = false,
   showExplanation = false,
+  timerComponent,
 }) => {
   const options = [
     { value: 1, text: question.option_a },
@@ -63,8 +65,9 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
     <div className="bg-gray-900 rounded-xl p-6 space-y-6">
       <div className="space-y-4">
         <div className="flex items-start justify-between">
-          <h3 className="text-lg font-semibold text-white">
+          <h3 className="text-lg font-semibold text-white flex items-center">
             Question {questionNumber}
+            {timerComponent}
           </h3>
           {question.difficulty_level && (
             <span className={`px-2 py-1 rounded text-xs font-medium ${
