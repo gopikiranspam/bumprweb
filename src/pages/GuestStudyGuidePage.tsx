@@ -355,9 +355,9 @@ export const GuestStudyGuidePage: React.FC = () => {
           <div className="flex items-start space-x-3">
             <User size={24} className="text-yellow-400 flex-shrink-0 mt-1" />
             <div className="text-left">
-              <h3 className="font-semibold text-yellow-400 mb-2 text-sm">Guest Study Mode</h3>
+              <h3 className="font-semibold text-yellow-400 mb-2 text-sm">Guest Syllabus Mode</h3>
               <p className="text-yellow-300 text-sm mb-3">
-                You're using the LLR Test Syllabus as a guest. Sign up to access personalized study plans and track your progress.
+                You're using the LLR Syllabus as a guest. Sign up to access personalized study plans and track your progress.
               </p>
               <button
                 onClick={() => navigate('/auth')}
