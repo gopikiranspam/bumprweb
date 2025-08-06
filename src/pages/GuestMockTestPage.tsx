@@ -74,6 +74,10 @@ export const GuestMockTestPage: React.FC = () => {
       setLoading(false);
     }
   };
+  const handleStartTest = () => {
+    setTestStarted(true);
+  };
+
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
