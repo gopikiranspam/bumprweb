@@ -156,17 +156,17 @@ export const GuestPracticeSelectionPage: React.FC = () => {
           <div className="bg-gradient-to-r from-blue-400/10 to-purple-400/10 border border-blue-400/30 rounded-xl p-6 text-center">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <BookOpen size={32} className="text-blue-400" />
-              <h2 className="text-2xl font-bold text-white">Study Guide</h2>
+              <h2 className="text-2xl font-bold text-white">LLR Test Syllabus</h2>
             </div>
             <p className="text-gray-300 mb-4">
-              Comprehensive study resource with all questions and answers from all subjects. Perfect for thorough preparation!
+              Complete syllabus as per India Motor Vehicles Act, 1988. All questions and answers from all subjects for thorough preparation!
             </p>
             <button
               onClick={() => navigate('/guest-study-guide')}
               className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors inline-flex items-center space-x-2"
             >
               <BookOpen size={20} />
-              <span>Open Study Guide</span>
+              <span>Open LLR Test Syllabus</span>
             </button>
           </div>
         </div>
