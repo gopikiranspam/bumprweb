@@ -80,43 +80,34 @@ export const GuestPracticeSelectionPage: React.FC = () => {
               </div>
             </div>
             <h1 className="text-4xl font-bold text-white">
-              Bumpr <span className="text-lime-400">India</span>
+              <span className="text-lime-400">Bumpr India</span>
             </h1>
           </div>
           
           <p className="text-xl text-gray-300 mb-8">
             India's #1 RTO Test Preparation Platform
           </p>
-          
-          {/* Key Selling Points */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div className="bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/30 rounded-xl p-4">
-              <div className="text-2xl font-bold text-green-400 mb-1">99%</div>
-              <div className="text-green-300 text-sm">Pass Rate</div>
-            </div>
-            <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/10 border border-blue-500/30 rounded-xl p-4">
-              <div className="text-2xl font-bold text-blue-400 mb-1">5min</div>
-              <div className="text-blue-300 text-sm">Daily Practice</div>
-            </div>
-            <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/30 rounded-xl p-4">
-              <div className="text-2xl font-bold text-purple-400 mb-1">All</div>
-              <div className="text-purple-300 text-sm">Indian States</div>
-            </div>
-            <div className="bg-gradient-to-br from-orange-500/20 to-orange-600/10 border border-orange-500/30 rounded-xl p-4">
-              <div className="text-2xl font-bold text-orange-400 mb-1">RTO</div>
-              <div className="text-orange-300 text-sm">Approved</div>
-            </div>
-          </div>
         </div>
 
-        {/* Insights Section */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">
-            Insights
-          </h1>
-          <p className="text-gray-400 text-lg">
-            All the questions and answers as per India Motor Vehicles Act, 1988
-          </p>
+        {/* Trusted Across India Section - Moved to Top */}
+        <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700 mb-8">
+          <h2 className="text-xl font-bold text-white mb-4 text-center flex items-center justify-center space-x-2">
+            <div className="w-6 h-4 bg-gradient-to-b from-orange-500 via-white to-green-500 rounded-sm"></div>
+            <span>Trusted Across India</span>
+          </h2>
+          <div className="text-center space-y-4">
+            <p className="text-gray-300 text-lg">
+              All the questions and answers as per India Motor Vehicles Act, 1988
+            </p>
+            <div className="flex flex-wrap justify-center gap-2 text-sm">
+              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">Maharashtra</span>
+              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">Karnataka</span>
+              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">Tamil Nadu</span>
+              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">Delhi</span>
+              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">Gujarat</span>
+              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">+ 23 More States</span>
+            </div>
+          </div>
         </div>
 
         {/* LLR Mock Test Button */}
@@ -170,27 +161,6 @@ export const GuestPracticeSelectionPage: React.FC = () => {
           })}
         </div>
 
-        {/* Features Notice */}
-        <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700">
-          <h2 className="text-xl font-bold text-white mb-4 text-center flex items-center justify-center space-x-2">
-            <div className="w-6 h-4 bg-gradient-to-b from-orange-500 via-white to-green-500 rounded-sm"></div>
-            <span>Trusted Across India</span>
-          </h2>
-          <div className="text-center space-y-4">
-            <p className="text-gray-300 text-lg">
-              Questions validated by RTO authorities and updated according to the latest Motor Vehicles Act, 1988
-            </p>
-            <div className="flex flex-wrap justify-center gap-2 text-sm">
-              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">Maharashtra</span>
-              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">Karnataka</span>
-              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">Tamil Nadu</span>
-              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">Delhi</span>
-              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">Gujarat</span>
-              <span className="bg-lime-400/10 text-lime-400 px-3 py-1 rounded-full">+ 23 More States</span>
-            </div>
-          </div>
-        </div>
-        
         {/* Guest Mode Notice - Moved to Bottom */}
         <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4 mt-8">
           <div className="flex items-start space-x-3">
