@@ -223,7 +223,7 @@ export const GuestStudyGuidePage: React.FC = () => {
           <div className="hidden sm:block">
             <h1 className="text-lg font-semibold text-white flex items-center space-x-2">
               <BookOpen size={20} className="text-lime-400" />
-              <span>LLR Complete Syllabus</span>
+              <span>{t('llrCompleteSyllabus')}</span>
             </h1>
           </div>
         </div>

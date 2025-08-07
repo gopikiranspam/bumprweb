@@ -156,13 +156,13 @@ export const GuestPracticeSelectionPage: React.FC = () => {
           <div className="bg-gradient-to-r from-lime-400/10 to-green-400/10 border border-lime-400/30 rounded-xl p-4 sm:p-6 text-center">
             <div className="flex items-center justify-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
               <BookOpen size={32} className="text-lime-400" />
-              <h2 className="text-base sm:text-lg font-bold text-white">LLR Complete Syllabus</h2>
+              <h2 className="text-base sm:text-lg font-bold text-white">{t('llrCompleteSyllabus')}</h2>
             </div>
             <button
               onClick={() => navigate('/guest-study-guide')}
               className="bg-lime-400 hover:bg-lime-300 text-black font-bold py-3 px-6 sm:px-8 rounded-lg text-base sm:text-lg transition-colors touch-target"
             >
-              Start
+              {t('start')}
             </button>
           </div>
         </div>

@@ -54,6 +54,8 @@ const translations = {
     averageScore: 'Average Score',
     bestScore: 'Best Score',
     passRate: 'Pass Rate',
+    llrCompleteSyllabus: 'LLR Complete Syllabus',
+    start: 'Start',
   },
   te: {
     appName: 'బంప్ర్',
@@ -90,6 +92,8 @@ const translations = {
     averageScore: 'సగటు స్కోర్',
     bestScore: 'అత్యుత్తమ స్కోర్',
     passRate: 'ఉత్తీర్ణత రేటు',
+    llrCompleteSyllabus: 'LLR పూర్తి సిలబస్',
+    start: 'ప్రారంభించండి',
   },
   hi: {
     appName: 'बम्पर',
@@ -126,6 +130,8 @@ const translations = {
     averageScore: 'औसत स्कोर',
     bestScore: 'सर्वोत्तम स्कोर',
     passRate: 'पास दर',
+    llrCompleteSyllabus: 'LLR पूर्ण पाठ्यक्रम',
+    start: 'शुरू करें',
   },
 };
 
