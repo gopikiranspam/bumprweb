@@ -289,54 +289,15 @@ export const GuestStudyGuidePage: React.FC = () => {
                 </div>
 
                 {/* Answer Options */}
-                <div className="space-y-1 mb-3">
-                  <div className="grid gap-2">
-                    <div className={`flex items-center space-x-2 p-2 rounded-lg ${
-                      question.correct_answer === 1 ? 'bg-green-500/20 border border-green-500/30' : 'bg-gray-800'
-                    }`}>
-                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center text-xs font-bold ${
-                        question.correct_answer === 1 ? 'border-green-400 bg-green-400 text-green-900' : 'border-gray-400 text-gray-400'
-                      }`}>
-                        A
+                {/* Correct Answer Only */}
+                <div className="mb-3">
+                  <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-3">
+                    <div className="flex items-start space-x-3">
+                      <div className="bg-green-400 text-green-900 font-bold px-2 py-1 rounded text-xs flex-shrink-0 mt-0.5">
+                        ANSWER
                       </div>
-                      <span className={`text-xs ${question.correct_answer === 1 ? 'text-green-300' : 'text-gray-300'}`}>
-                        {question.option_a}
-                      </span>
-                    </div>
-                    <div className={`flex items-center space-x-2 p-2 rounded-lg ${
-                      question.correct_answer === 2 ? 'bg-green-500/20 border border-green-500/30' : 'bg-gray-800'
-                    }`}>
-                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center text-xs font-bold ${
-                        question.correct_answer === 2 ? 'border-green-400 bg-green-400 text-green-900' : 'border-gray-400 text-gray-400'
-                      }`}>
-                        B
-                      </div>
-                      <span className={`text-xs ${question.correct_answer === 2 ? 'text-green-300' : 'text-gray-300'}`}>
-                        {question.option_b}
-                      </span>
-                    </div>
-                    <div className={`flex items-center space-x-2 p-2 rounded-lg ${
-                      question.correct_answer === 3 ? 'bg-green-500/20 border border-green-500/30' : 'bg-gray-800'
-                    }`}>
-                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center text-xs font-bold ${
-                        question.correct_answer === 3 ? 'border-green-400 bg-green-400 text-green-900' : 'border-gray-400 text-gray-400'
-                      }`}>
-                        C
-                      </div>
-                      <span className={`text-xs ${question.correct_answer === 3 ? 'text-green-300' : 'text-gray-300'}`}>
-                        {question.option_c}
-                      </span>
-                    </div>
-                    <div className={`flex items-center space-x-2 p-2 rounded-lg ${
-                      question.correct_answer === 4 ? 'bg-green-500/20 border border-green-500/30' : 'bg-gray-800'
-                    }`}>
-                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center text-xs font-bold ${
-                        question.correct_answer === 4 ? 'border-green-400 bg-green-400 text-green-900' : 'border-gray-400 text-gray-400'
-                      }`}>
-                        D
-                      </div>
-                      <span className={`text-xs ${question.correct_answer === 4 ? 'text-green-300' : 'text-gray-300'}`}>
-                        {question.option_d}
+                      <span className="text-green-300 text-sm font-medium leading-relaxed">
+                        {getCorrectAnswerText(question)}
                       </span>
                     </div>
                   </div>
