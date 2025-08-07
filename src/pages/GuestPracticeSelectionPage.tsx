@@ -153,16 +153,22 @@ export const GuestPracticeSelectionPage: React.FC = () => {
 
         {/* LLR Complete Syllabus Button */}
         <div className="mb-6 sm:mb-8">
-          <div className="bg-gradient-to-r from-lime-400/10 to-green-400/10 border border-lime-400/30 rounded-xl p-4 sm:p-6 text-center">
-            <div className="flex items-center justify-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
-              <BookOpen size={32} className="text-lime-400" />
-              <h2 className="text-base sm:text-lg font-bold text-white">{t('llrCompleteSyllabus')}</h2>
+          <div className="bg-lime-500/10 border border-lime-500/30 rounded-xl p-4 sm:p-6 space-y-3 sm:space-y-4">
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <BookOpen size={24} className="text-lime-400" />
+              <h3 className="font-semibold text-white text-sm sm:text-base">{t('llrCompleteSyllabus')}</h3>
             </div>
+
+            <p className="text-gray-400 text-xs sm:text-sm">
+              Complete study guide with all questions and explanations
+            </p>
+
             <button
               onClick={() => navigate('/guest-study-guide')}
-              className="bg-lime-400 hover:bg-lime-300 text-black font-bold py-3 px-6 sm:px-8 rounded-lg text-base sm:text-lg transition-colors touch-target"
+              className="w-full bg-lime-400 hover:bg-lime-300 text-black font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2 touch-target"
             >
-              {t('start')}
+              <Play size={16} />
+              <span>{t('start')}</span>
             </button>
           </div>
         </div>
