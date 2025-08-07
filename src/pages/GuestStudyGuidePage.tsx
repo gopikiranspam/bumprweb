@@ -316,8 +316,10 @@ export const GuestStudyGuidePage: React.FC = () => {
         <div className="space-y-3 mb-8">
           {currentQuestions.map((question, index) => {
             const questionNumber = startIndex + index + 1;
+            const isRoadSignsOnly = filter === 'road-signs';
+            
             return (
-              <div key={question.id} className="bg-gray-900 rounded-lg p-3 space-y-2">
+              <div key={question.id} className={`bg-gray-900 rounded-lg p-3 ${isRoadSignsOnly ? 'space-y-0' : 'space-y-2'}`}>
                 {/* Question Header */}
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center space-x-2">
@@ -335,34 +337,63 @@ export const GuestStudyGuidePage: React.FC = () => {
                   )}
                 </div>
 
-                {/* Question Image */}
-                {question.image_url && (
-                  <div className="w-full h-32 bg-gray-800 rounded-lg overflow-hidden mb-2">
-                    <img
-                      src={question.image_url}
-                      alt="Question illustration"
-                      className="w-full h-full object-contain"
-                      loading="lazy"
-                    />
+                {isRoadSignsOnly ? (
+                  /* Road Signs Layout: Image left, Answer right */
+                  <div className="flex items-start space-x-4 mb-2">
+                    {/* Responsive Road Sign Image */}
+                    {question.image_url && (
+                      <div className="flex-shrink-0">
+                        <div className="road-sign-image-container bg-gray-800 rounded-lg overflow-hidden">
+                          <img
+                            src={question.image_url}
+                            alt="Road sign"
+                            className="road-sign-image object-contain rounded-lg"
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* Answer Text with Question Styling */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-white text-xs font-medium leading-relaxed">
+                        {getCorrectAnswerText(question)}
+                      </h3>
+                    </div>
                   </div>
+                ) : (
+                  /* Default Layout for Questions and Traffic Rules */
+                  <>
+                    {/* Question Image */}
+                    {question.image_url && (
+                      <div className="w-full h-32 bg-gray-800 rounded-lg overflow-hidden mb-2">
+                        <img
+                          src={question.image_url}
+                          alt="Question illustration"
+                          className="w-full h-full object-contain"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
+
+                    {/* Question Text */}
+                    <div className="mb-2">
+                      <h3 className="text-white text-xs font-medium leading-relaxed">
+                        {question.question_text}
+                      </h3>
+                    </div>
+
+                    {/* Answer Options */}
+                    {/* Correct Answer Only */}
+                    <div className="mb-2">
+                      <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-3">
+                        <span className="text-green-300 text-xs leading-relaxed">
+                          {getCorrectAnswerText(question)}
+                        </span>
+                      </div>
+                    </div>
+                  </>
                 )}
-
-                {/* Question Text */}
-                <div className="mb-2">
-                  <h3 className="text-white text-xs font-medium leading-relaxed">
-                    {question.question_text}
-                  </h3>
-                </div>
-
-                {/* Answer Options */}
-                {/* Correct Answer Only */}
-                <div className="mb-2">
-                  <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-3">
-                    <span className="text-green-300 text-xs leading-relaxed">
-                      {getCorrectAnswerText(question)}
-                    </span>
-                  </div>
-                </div>
 
                 {/* Explanation */}
                 {question.explanation && (
