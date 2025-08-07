@@ -106,17 +106,17 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
             key={option.value}
             onClick={() => !showFeedback && !showExplanation && onAnswerSelect(option.value)}
             disabled={showFeedback || showExplanation}
-            className={`w-full text-left p-3 sm:p-4 rounded-lg border-2 transition-all duration-200 touch-target ${getOptionStyle(option.value)} ${
+            className={`w-full p-3 sm:p-4 rounded-lg border-2 transition-all duration-200 touch-target ${getOptionStyle(option.value)} ${
               !showFeedback && !showExplanation ? 'hover:scale-[1.02] active:scale-[0.98]' : 'cursor-default'
             }`}
           >
-            <div className="flex items-start space-x-2 sm:space-x-3">
-              <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 flex items-center justify-center text-xs sm:text-sm font-bold flex-shrink-0 mt-0.5 ${getOptionCircleStyle(option.value)}`}>
+            <div className="text-left">
+              <span className={`inline-block w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 text-xs sm:text-sm font-bold mr-3 sm:mr-4 ${getOptionCircleStyle(option.value)} flex items-center justify-center`}>
                 {String.fromCharCode(64 + option.value)}
-              </div>
-              <div className="flex-1 font-medium text-xs sm:text-sm leading-relaxed text-left w-full">
+              </span>
+              <span className="font-medium text-xs sm:text-sm leading-relaxed">
                 {option.text}
-              </div>
+              </span>
             </div>
           </button>
         ))}
