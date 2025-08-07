@@ -296,14 +296,9 @@ export const GuestStudyGuidePage: React.FC = () => {
                 {/* Correct Answer Only */}
                 <div className="mb-2">
                   <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-3">
-                    <div className="flex items-start space-x-2">
-                      <div className="bg-green-400 text-green-900 font-semibold px-2 py-1 rounded text-xs flex-shrink-0">
-                        {question.correct_answer}.
-                      </div>
-                      <span className="text-green-300 text-xs leading-relaxed">
-                        {getCorrectAnswerText(question)}
-                      </span>
-                    </div>
+                    <span className="text-green-300 text-xs leading-relaxed">
+                      {getCorrectAnswerText(question)}
+                    </span>
                   </div>
                 </div>
 
