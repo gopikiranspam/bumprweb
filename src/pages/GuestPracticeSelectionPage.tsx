@@ -120,6 +120,28 @@ export const GuestPracticeSelectionPage: React.FC = () => {
           </div>
         </div>
 
+        {/* LLR Complete Syllabus Button */}
+        <div className="mb-6 sm:mb-8">
+          <div className="bg-lime-500/10 border border-lime-500/30 rounded-xl p-4 sm:p-6 space-y-3 sm:space-y-4">
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <BookOpen size={24} className="text-lime-400" />
+              <h3 className="font-semibold text-white text-sm sm:text-base">{t('llrCompleteSyllabus')}</h3>
+            </div>
+
+            <p className="text-gray-400 text-xs sm:text-sm">
+              Complete study guide with all questions and explanations
+            </p>
+
+            <button
+              onClick={() => navigate('/guest-study-guide')}
+              className="w-full bg-lime-400 hover:bg-lime-300 text-black font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2 touch-target"
+            >
+              <Play size={16} />
+              <span>Start Practice</span>
+            </button>
+          </div>
+        </div>
+
         {/* Subject Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
           {subjects.map((subject) => {
@@ -149,28 +171,6 @@ export const GuestPracticeSelectionPage: React.FC = () => {
               </div>
             );
           })}
-        </div>
-
-        {/* LLR Complete Syllabus Button */}
-        <div className="mb-6 sm:mb-8">
-          <div className="bg-lime-500/10 border border-lime-500/30 rounded-xl p-4 sm:p-6 space-y-3 sm:space-y-4">
-            <div className="flex items-center space-x-2 sm:space-x-3">
-              <BookOpen size={24} className="text-lime-400" />
-              <h3 className="font-semibold text-white text-sm sm:text-base">{t('llrCompleteSyllabus')}</h3>
-            </div>
-
-            <p className="text-gray-400 text-xs sm:text-sm">
-              Complete study guide with all questions and explanations
-            </p>
-
-            <button
-              onClick={() => navigate('/guest-study-guide')}
-              className="w-full bg-lime-400 hover:bg-lime-300 text-black font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2 touch-target"
-            >
-              <Play size={16} />
-              <span>Start Practice</span>
-            </button>
-          </div>
         </div>
 
         {/* Guest Mode Notice - Moved to Bottom */}
