@@ -1,12 +1,10 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder.supabase.co';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder-key';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-// Only create client if we have valid credentials
-export const supabase = supabaseUrl && supabaseAnonKey && 
-  supabaseUrl !== 'https://placeholder.supabase.co' && 
-  supabaseAnonKey !== 'placeholder-key' 
+// Create client with fallback handling
+export const supabase = supabaseUrl && supabaseAnonKey 
   ? createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
     autoRefreshToken: true,
@@ -14,6 +12,11 @@ export const supabase = supabaseUrl && supabaseAnonKey &&
     detectSessionInUrl: true
   }
 }) : null;
+
+// Environment validation for development
+if (import.meta.env.DEV && !supabase) {
+  console.warn('⚠️ Supabase not configured. Please check your environment variables.');
+}
 
 // Database helper functions
 export const db = {
