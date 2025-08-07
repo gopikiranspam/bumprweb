@@ -233,7 +233,7 @@ export const GuestStudyGuidePage: React.FC = () => {
             <span className="text-yellow-400 text-sm font-medium">Guest</span>
           </div>
           <button
-            onClick={() => navigate('/auth')}
+            onClick={() => navigate('/login')}
             className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors touch-target"
           >
             Login
@@ -347,7 +347,7 @@ export const GuestStudyGuidePage: React.FC = () => {
                 You're using the LLR Complete Syllabus as a guest. Sign up to access personalized study plans and track your progress.
               </p>
               <button
-                onClick={() => navigate('/auth')}
+                onClick={() => navigate('/login')}
                 className="inline-flex items-center space-x-2 bg-yellow-400 hover:bg-yellow-300 text-black font-medium py-2 px-3 rounded-lg transition-colors text-xs"
               >
                 <LogIn size={16} />

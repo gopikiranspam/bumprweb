@@ -54,7 +54,7 @@ export const GuestPracticeSelectionPage: React.FC = () => {
       <div className="p-4 flex justify-between items-center border-b border-gray-800 safe-area-left safe-area-right">
         <div className="flex items-center space-x-4">
           <button
-            onClick={() => navigate('/auth')}
+            onClick={() => navigate('/')}
             className="p-3 rounded-lg hover:bg-gray-800 transition-colors touch-target"
             aria-label="Go back"
           >
@@ -63,7 +63,7 @@ export const GuestPracticeSelectionPage: React.FC = () => {
           <Logo size="sm" />
         </div>
         <button
-          onClick={() => navigate('/auth')}
+          onClick={() => navigate('/login')}
           className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors touch-target"
         >
           Login
@@ -192,7 +192,7 @@ export const GuestPracticeSelectionPage: React.FC = () => {
               <p className="text-yellow-300 text-xs sm:text-sm">
                 You're practicing as a guest. Your progress and results won't be saved. 
                 <button
-                  onClick={() => navigate('/auth')}
+                  onClick={() => navigate('/login')}
                   className="text-yellow-400 hover:text-yellow-300 underline ml-1 touch-target"
                 >
                   Sign up

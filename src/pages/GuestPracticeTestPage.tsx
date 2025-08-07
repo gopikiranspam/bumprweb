@@ -238,7 +238,7 @@ export const GuestPracticeTestPage: React.FC = () => {
             <span className="text-yellow-400 text-sm font-medium">Guest</span>
           </div>
           <button
-            onClick={() => navigate('/auth')}
+            onClick={() => navigate('/login')}
             className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors touch-target"
           >
             Login
@@ -292,7 +292,7 @@ export const GuestPracticeTestPage: React.FC = () => {
                     You're taking this test as a guest. Your results won't be saved or tracked.
                   </p>
                   <button
-                    onClick={() => navigate('/auth')}
+                    onClick={() => navigate('/login')}
                     className="inline-flex items-center space-x-2 bg-yellow-400 hover:bg-yellow-300 text-black font-medium py-2 px-4 rounded-lg transition-colors text-sm"
                   >
                     <LogIn size={16} />
@@ -424,7 +424,7 @@ export const GuestPracticeTestPage: React.FC = () => {
                 </button>
                 
                 <button
-                  onClick={() => navigate('/auth')}
+                  onClick={() => navigate('/login')}
                   className="flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 px-6 rounded-lg transition-colors"
                 >
                   <LogIn size={18} />
