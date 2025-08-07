@@ -114,7 +114,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
               <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 flex items-center justify-center text-xs sm:text-sm font-bold flex-shrink-0 mt-0.5 ${getOptionCircleStyle(option.value)}`}>
                 {String.fromCharCode(64 + option.value)}
               </div>
-              <span className="flex-1 font-medium text-xs sm:text-sm leading-relaxed">
+              <span className="flex-1 font-medium text-xs sm:text-sm leading-relaxed text-left">
                 {option.text}
               </span>
             </div>
