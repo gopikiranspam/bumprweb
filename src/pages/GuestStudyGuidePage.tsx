@@ -47,26 +47,26 @@ export const GuestStudyGuidePage: React.FC = () => {
         const roadRules = roadRulesResult || [];
         const drivingPrinciples = drivingPrinciplesResult || [];
 
-        // Shuffle each subject's questions individually
-        const shuffledRoadRules = roadRules.sort(() => Math.random() - 0.5);
-        const shuffledDrivingPrinciples = drivingPrinciples.sort(() => Math.random() - 0.5);
+        // Keep questions in original order (no shuffling for LLR Syllabus)
+        const orderedRoadRules = roadRules;
+        const orderedDrivingPrinciples = drivingPrinciples;
 
         // Interleave Traffic Rules and Safe Driving questions
-        const maxLength = Math.max(shuffledRoadRules.length, shuffledDrivingPrinciples.length);
+        const maxLength = Math.max(orderedRoadRules.length, orderedDrivingPrinciples.length);
         
         for (let i = 0; i < maxLength; i++) {
-          if (i < shuffledRoadRules.length) {
-            interleavedQuestions.push(shuffledRoadRules[i]);
+          if (i < orderedRoadRules.length) {
+            interleavedQuestions.push(orderedRoadRules[i]);
           }
-          if (i < shuffledDrivingPrinciples.length) {
-            interleavedQuestions.push(shuffledDrivingPrinciples[i]);
+          if (i < orderedDrivingPrinciples.length) {
+            interleavedQuestions.push(orderedDrivingPrinciples[i]);
           }
         }
       } else if (filter === 'road-signs') {
         // Load only Road Signs questions
         const roadSignsResult = await supabaseAdmin.getTestQuestions('road_signs', language, 100);
         const roadSigns = roadSignsResult || [];
-        interleavedQuestions = roadSigns.sort(() => Math.random() - 0.5);
+        interleavedQuestions = roadSigns; // Keep original order
       } else {
         // Default: Load all subjects (existing behavior)
         const [roadSignsResult, roadRulesResult, drivingPrinciplesResult] = await Promise.all([
@@ -80,26 +80,26 @@ export const GuestStudyGuidePage: React.FC = () => {
         const roadRules = roadRulesResult || [];
         const drivingPrinciples = drivingPrinciplesResult || [];
 
-        // Shuffle each subject's questions individually
-        const shuffledRoadSigns = roadSigns.sort(() => Math.random() - 0.5);
-        const shuffledRoadRules = roadRules.sort(() => Math.random() - 0.5);
-        const shuffledDrivingPrinciples = drivingPrinciples.sort(() => Math.random() - 0.5);
+        // Keep questions in original order (no shuffling for LLR Syllabus)
+        const orderedRoadSigns = roadSigns;
+        const orderedRoadRules = roadRules;
+        const orderedDrivingPrinciples = drivingPrinciples;
 
         // Interleave questions in sequence: Traffic Rules -> Safe Driving -> Road Signs
-        const maxLength = Math.max(shuffledRoadRules.length, shuffledDrivingPrinciples.length, shuffledRoadSigns.length);
+        const maxLength = Math.max(orderedRoadRules.length, orderedDrivingPrinciples.length, orderedRoadSigns.length);
         
         for (let i = 0; i < maxLength; i++) {
           // Add Traffic Rules question (road_rules)
-          if (i < shuffledRoadRules.length) {
-            interleavedQuestions.push(shuffledRoadRules[i]);
+          if (i < orderedRoadRules.length) {
+            interleavedQuestions.push(orderedRoadRules[i]);
           }
           // Add Safe Driving question (driving_principles)
-          if (i < shuffledDrivingPrinciples.length) {
-            interleavedQuestions.push(shuffledDrivingPrinciples[i]);
+          if (i < orderedDrivingPrinciples.length) {
+            interleavedQuestions.push(orderedDrivingPrinciples[i]);
           }
           // Add Road Signs question (road_signs)
-          if (i < shuffledRoadSigns.length) {
-            interleavedQuestions.push(shuffledRoadSigns[i]);
+          if (i < orderedRoadSigns.length) {
+            interleavedQuestions.push(orderedRoadSigns[i]);
           }
         }
       }
