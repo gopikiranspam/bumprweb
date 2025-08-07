@@ -240,6 +240,7 @@ export const GuestMockTestPage: React.FC = () => {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-14 sm:pt-16">
         {!testStarted && !testCompleted && (
           <div className="text-center space-y-8">
             <div>

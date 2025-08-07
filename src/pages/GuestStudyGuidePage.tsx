@@ -237,6 +237,7 @@ export const GuestStudyGuidePage: React.FC = () => {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-14 sm:pt-16">
         {/* Header Section */}
         {/* Page Information */}
         <div className="text-center mb-6">

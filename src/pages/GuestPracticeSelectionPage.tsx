@@ -66,6 +66,7 @@ export const GuestPracticeSelectionPage: React.FC = () => {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 safe-area-left safe-area-right">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 pt-14 sm:pt-16 safe-area-left safe-area-right">
         {/* Hero Section with Key Selling Points */}
         <div className="text-center mb-8 sm:mb-12">
           <div className="mb-6">

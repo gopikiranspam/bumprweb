@@ -91,7 +91,7 @@ export const AuthPage: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex items-center justify-center p-4 safe-area-left safe-area-right">
+      <div className="flex-1 flex items-center justify-center p-4 pt-14 sm:pt-16 safe-area-left safe-area-right">
         <div className="w-full max-w-sm sm:max-w-md space-y-6 sm:space-y-8">
           {/* Welcome Section */}
           <div className="text-center space-y-3 sm:space-y-4">
