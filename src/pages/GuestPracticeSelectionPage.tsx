@@ -72,13 +72,16 @@ export const GuestPracticeSelectionPage: React.FC = () => {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 safe-area-left safe-area-right">
         {/* Language Selector - Relocated to top-right of main content */}
-        <div className="flex justify-end mb-4">
-          <LanguageSelector />
-        </div>
-        
         {/* Hero Section with Key Selling Points */}
         <div className="text-center mb-8 sm:mb-12">
-          <div className="mb-6">
+          {/* Consolidated Header Container - Language Selection + Brand Title */}
+          <div className="mb-6 relative">
+            {/* Language Selector positioned in top-right corner */}
+            <div className="absolute top-0 right-0 z-10">
+              <LanguageSelector />
+            </div>
+            
+            {/* Brand Title - Bumpr India */}
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
               <span className="text-lime-400">Bumpr</span> <span className="text-white">India</span>
             </h1>
