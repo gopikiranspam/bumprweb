@@ -7,6 +7,7 @@ import { AuthProvider } from './contexts/AuthProvider';
 import { LanguageProvider } from './contexts/LanguageProvider';
 import { useAuth } from './hooks/useAuth';
 
+import { HomePage } from './pages/HomePage';
 import { AuthPage } from './pages/AuthPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { GuestPracticeSelectionPage } from './pages/GuestPracticeSelectionPage';
@@ -55,9 +56,12 @@ const AppRoutes: React.FC = () => {
   return (
     <Router>
       <Routes>
+        {/* Home Page - Landing page for all users */}
+        <Route path="/" element={<HomePage />} />
+        
         {/* Public Routes */}
         <Route
-          path="/auth"
+          path="/login"
           element={
             <PublicRoute>
               <AuthPage />
@@ -82,10 +86,10 @@ const AppRoutes: React.FC = () => {
         <Route path="/guest-study-guide" element={<GuestStudyGuidePage />} />
 
         {/* Default redirect */}
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/auth" element={<Navigate to="/login" replace />} />
         
         {/* Catch all route */}
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );
