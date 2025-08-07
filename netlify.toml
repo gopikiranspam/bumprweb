@@ -6,9 +6,8 @@
   publish = "dist"
   
   # Node.js version
-  environment = { NODE_VERSION = "18" }
-
-[build.environment]
+  NODE_VERSION = "18"
+  
   # Ensure npm install runs before build
   NPM_FLAGS = "--production=false"
 
