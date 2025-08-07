@@ -125,11 +125,11 @@ export const GuestPracticeSelectionPage: React.FC = () => {
           <div className="bg-lime-500/10 border border-lime-500/30 rounded-xl p-4 sm:p-6 space-y-3 sm:space-y-4">
             <div className="flex items-center space-x-2 sm:space-x-3">
               <BookOpen size={24} className="text-lime-400" />
-              <h3 className="font-semibold text-white text-sm sm:text-base">{t('llrCompleteSyllabus')}</h3>
+              <h3 className="font-semibold text-white text-sm sm:text-base">LLR Syllabus Book</h3>
             </div>
 
             <p className="text-gray-400 text-xs sm:text-sm">
-              Complete study guide with all questions and explanations
+              All the questions and answers as per India Motor Vehicles Act, 1988 in same
             </p>
 
             <button
@@ -137,7 +137,7 @@ export const GuestPracticeSelectionPage: React.FC = () => {
               className="w-full bg-lime-400 hover:bg-lime-300 text-black font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2 touch-target"
             >
               <Play size={16} />
-              <span>Start Practice</span>
+              <span>Start Preparation</span>
             </button>
           </div>
         </div>
