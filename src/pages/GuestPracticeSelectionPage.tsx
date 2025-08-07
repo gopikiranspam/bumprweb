@@ -167,21 +167,6 @@ export const GuestPracticeSelectionPage: React.FC = () => {
               All the questions and answers as per India Motor Vehicles Act, 1988 in same
             </p>
 
-            {/* Filter Buttons */}
-            <div className="flex space-x-2">
-              <button
-                onClick={() => navigate('/guest-study-guide?filter=questions')}
-                className="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-3 rounded-lg transition-colors text-xs touch-target"
-              >
-                Questions
-              </button>
-              <button
-                onClick={() => navigate('/guest-study-guide?filter=road-signs')}
-                className="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-3 rounded-lg transition-colors text-xs touch-target"
-              >
-                Road Signs
-              </button>
-            </div>
 
             <button
               onClick={() => navigate('/guest-study-guide')}

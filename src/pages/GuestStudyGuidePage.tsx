@@ -286,20 +286,29 @@ export const GuestStudyGuidePage: React.FC = () => {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Language Selector - Relocated to top-right of main content */}
-        <div className="flex justify-end mb-4">
+        {/* Language Selector with Filter Buttons */}
+        <div className="flex justify-between items-center mb-4">
+          <div className="flex space-x-2">
+            <button
+              onClick={() => navigate('/guest-study-guide?filter=questions')}
+              className="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-3 rounded-lg transition-colors text-xs touch-target"
+            >
+              Questions
+            </button>
+            <button
+              onClick={() => navigate('/guest-study-guide?filter=road-signs')}
+              className="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-3 rounded-lg transition-colors text-xs touch-target"
+            >
+              Road Signs
+            </button>
+          </div>
           <LanguageSelector />
         </div>
         
-        {/* Page Information */}
-        <div className="text-center mb-6">
-          <div className="bg-gray-900 rounded-lg p-3 inline-block">
-            <div className="text-lime-400 font-semibold text-sm">
-              Page {currentPage} of {totalPages}
-            </div>
-            <div className="text-gray-400 text-xs mt-1">
-              Questions {startIndex + 1}-{Math.min(endIndex, allQuestions.length)} of {allQuestions.length}
-            </div>
+        {/* Minimal Page Information - Right Aligned */}
+        <div className="flex justify-end mb-6">
+          <div className="text-lime-400 text-sm font-medium">
+            Page {currentPage} of {totalPages}
           </div>
         </div>
 
