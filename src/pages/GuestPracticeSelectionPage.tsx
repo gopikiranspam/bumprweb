@@ -6,7 +6,6 @@ import {
   Target, 
   Award,
   Play,
-  ArrowLeft,
   User,
   AlertCircle,
   Trophy
@@ -83,13 +82,6 @@ export const GuestPracticeSelectionPage: React.FC = () => {
       {/* Header */}
       <div className="p-4 flex justify-between items-center border-b border-gray-800 safe-area-left safe-area-right">
         <div className="flex items-center space-x-4">
-          <button
-            onClick={() => navigate('/auth')}
-            className="p-3 rounded-lg hover:bg-gray-800 transition-colors touch-target"
-            aria-label="Go back"
-          >
-            <ArrowLeft size={20} className="text-white" />
-          </button>
           <Logo size="sm" />
         </div>
         <button
