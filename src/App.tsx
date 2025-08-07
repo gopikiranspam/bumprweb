@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AuthProvider } from './contexts/AuthProvider';
 import { LanguageProvider } from './contexts/LanguageProvider';
 import { useAuth } from './hooks/useAuth';
-import { HomePage } from './pages/HomePage';
 
 import { AuthPage } from './pages/AuthPage';
 import { DashboardPage } from './pages/DashboardPage';
@@ -56,12 +55,9 @@ const AppRoutes: React.FC = () => {
   return (
     <Router>
       <Routes>
-        {/* Home Page - Default Landing */}
-        <Route path="/" element={<HomePage />} />
-        
         {/* Public Routes */}
         <Route
-          path="/login"
+          path="/auth"
           element={
             <PublicRoute>
               <AuthPage />
@@ -85,8 +81,11 @@ const AppRoutes: React.FC = () => {
         <Route path="/guest-mock-test" element={<GuestMockTestPage />} />
         <Route path="/guest-study-guide" element={<GuestStudyGuidePage />} />
 
+        {/* Default redirect */}
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        
         {/* Catch all route */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </Router>
   );

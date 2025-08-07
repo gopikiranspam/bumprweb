@@ -54,7 +54,7 @@ export const GuestPracticeSelectionPage: React.FC = () => {
       <div className="p-4 flex justify-between items-center border-b border-gray-800 safe-area-left safe-area-right">
         <div className="flex items-center space-x-4">
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/auth')}
             className="p-3 rounded-lg hover:bg-gray-800 transition-colors touch-target"
             aria-label="Go back"
           >
@@ -63,7 +63,7 @@ export const GuestPracticeSelectionPage: React.FC = () => {
           <Logo size="sm" />
         </div>
         <button
-          onClick={() => navigate('/login')}
+          onClick={() => navigate('/auth')}
           className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors touch-target"
         >
           Login
@@ -71,6 +71,11 @@ export const GuestPracticeSelectionPage: React.FC = () => {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 safe-area-left safe-area-right">
+        {/* Language Selector - Relocated to top-right of main content */}
+        <div className="flex justify-end mb-4">
+          <LanguageSelector />
+        </div>
+        
         {/* Hero Section with Key Selling Points */}
         <div className="text-center mb-8 sm:mb-12">
           <div className="mb-6">
@@ -187,7 +192,7 @@ export const GuestPracticeSelectionPage: React.FC = () => {
               <p className="text-yellow-300 text-xs sm:text-sm">
                 You're practicing as a guest. Your progress and results won't be saved. 
                 <button
-                  onClick={() => navigate('/login')}
+                  onClick={() => navigate('/auth')}
                   className="text-yellow-400 hover:text-yellow-300 underline ml-1 touch-target"
                 >
                   Sign up

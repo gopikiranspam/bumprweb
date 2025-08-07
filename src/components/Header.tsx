@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, User, LogOut, Globe } from 'lucide-react';
+import { Menu, User, LogOut } from 'lucide-react';
 import { Logo } from './Logo';
 import { LanguageSelector } from './LanguageSelector';
 import { useAuth } from '../hooks/useAuth';
@@ -22,8 +22,7 @@ export const Header: React.FC<HeaderProps> = ({ onMenuClick, showMenu = true }) 
     <header className="bg-black/95 backdrop-blur-sm border-b border-gray-800 fixed top-0 z-50 safe-area-top w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 safe-area-left safe-area-right">
         <div className="flex items-center justify-between h-14 sm:h-16">
-          {/* Left side: Logo and Language Selector in same container */}
-          <div className="flex items-center space-x-4 sm:space-x-6">
+          <div className="flex items-center space-x-4">
             {showMenu && (
               <button
                 onClick={onMenuClick}
@@ -33,15 +32,14 @@ export const Header: React.FC<HeaderProps> = ({ onMenuClick, showMenu = true }) 
                 <Menu size={20} className="text-white" />
               </button>
             )}
-            {/* Logo and Language Selector Container */}
-            <div className="flex items-center space-x-3 sm:space-x-4">
+            <div className="hidden xs:block">
               <Logo size="sm" />
-              <div className="hidden sm:block w-px h-6 bg-gray-600"></div>
-              <LanguageSelector />
+            </div>
+            <div className="xs:hidden">
+              <Logo size="sm" />
             </div>
           </div>
 
-          {/* Right side: User actions */}
           <div className="flex items-center space-x-2 sm:space-x-4">
             {user && (
               <div className="flex items-center space-x-2 sm:space-x-3">
@@ -74,7 +72,7 @@ export const Header: React.FC<HeaderProps> = ({ onMenuClick, showMenu = true }) 
             
             {!user && (
               <button
-                onClick={() => window.location.href = '/login'}
+                onClick={() => window.location.href = '/auth'}
                 className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors touch-target"
               >
                 Login

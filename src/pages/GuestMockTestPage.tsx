@@ -236,7 +236,7 @@ export const GuestMockTestPage: React.FC = () => {
             <span className="text-yellow-400 text-sm font-medium">Guest</span>
           </div>
           <button
-            onClick={() => navigate('/login')}
+            onClick={() => navigate('/auth')}
             className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors touch-target"
           >
             Login
@@ -245,6 +245,11 @@ export const GuestMockTestPage: React.FC = () => {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Language Selector - Relocated to top-right of main content */}
+        <div className="flex justify-end mb-4">
+          <LanguageSelector />
+        </div>
+        
         {!testStarted && !testCompleted && (
           <div className="text-center space-y-8">
             <div>
@@ -284,7 +289,7 @@ export const GuestMockTestPage: React.FC = () => {
                     You're taking this mock test as a guest. Your results won't be saved or tracked.
                   </p>
                   <button
-                    onClick={() => navigate('/login')}
+                    onClick={() => navigate('/auth')}
                     className="inline-flex items-center space-x-2 bg-yellow-400 hover:bg-yellow-300 text-black font-medium py-2 px-4 rounded-lg transition-colors text-sm"
                   >
                     <LogIn size={16} />
@@ -416,7 +421,7 @@ export const GuestMockTestPage: React.FC = () => {
                 </button>
                 
                 <button
-                  onClick={() => navigate('/login')}
+                  onClick={() => navigate('/auth')}
                   className="flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 px-6 rounded-lg transition-colors"
                 >
                   <LogIn size={18} />
