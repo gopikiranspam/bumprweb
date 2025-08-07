@@ -82,10 +82,10 @@ const AppRoutes: React.FC = () => {
         <Route path="/guest-study-guide" element={<GuestStudyGuidePage />} />
 
         {/* Default redirect */}
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/" element={<Navigate to="/guest-practice" replace />} />
         
         {/* Catch all route */}
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        <Route path="*" element={<Navigate to="/guest-practice" replace />} />
       </Routes>
     </Router>
   );
