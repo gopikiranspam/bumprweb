@@ -137,7 +137,7 @@ export const DashboardPage: React.FC = () => {
     <div className="min-h-screen bg-black">
       <Header />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-14 sm:pt-16">
         {/* Welcome Section */}
         <div className="mb-8">
           <div className="flex items-center justify-between">
