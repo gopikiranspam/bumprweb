@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { 
   BookOpen, 
   Target, 
@@ -17,6 +18,35 @@ import { useLanguage } from '../contexts/LanguageProvider';
 export const GuestPracticeSelectionPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
+
+  // Disable back button functionality on home page only
+  useEffect(() => {
+    // Push current state to history to prevent going back
+    const disableBackButton = () => {
+      window.history.pushState(null, '', window.location.href);
+    };
+
+    // Handle popstate event (back button press)
+    const handlePopState = (event: PopStateEvent) => {
+      // Prevent default back navigation
+      event.preventDefault();
+      // Push state again to stay on current page
+      window.history.pushState(null, '', window.location.href);
+      // Optional: Show a message or perform custom action
+      console.log('Back button disabled on home page');
+    };
+
+    // Initial setup - add current page to history
+    disableBackButton();
+
+    // Add event listener for back button
+    window.addEventListener('popstate', handlePopState);
+
+    // Cleanup function to remove event listener when component unmounts
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []); // Empty dependency array ensures this runs once on mount
 
   const subjects = [
     {
