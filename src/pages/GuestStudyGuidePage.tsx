@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { 
   ArrowLeft, 
   BookOpen,
@@ -19,6 +19,8 @@ import { toast } from 'react-toastify';
 export const GuestStudyGuidePage: React.FC = () => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
+  const [searchParams] = useSearchParams();
+  const filter = searchParams.get('filter');
 
   const QUESTIONS_PER_PAGE = 10;
 
@@ -33,39 +35,72 @@ export const GuestStudyGuidePage: React.FC = () => {
   const loadAllQuestions = async () => {
     setLoading(true);
     try {
-      // Fetch questions from all subjects
-      const [roadSignsResult, roadRulesResult, drivingPrinciplesResult] = await Promise.all([
-        supabaseAdmin.getTestQuestions('road_signs', language, 100),
-        supabaseAdmin.getTestQuestions('road_rules', language, 100),
-        supabaseAdmin.getTestQuestions('driving_principles', language, 100)
-      ]);
+      let interleavedQuestions = [];
 
-      // Organize questions by subject
-      const roadSigns = roadSignsResult || [];
-      const roadRules = roadRulesResult || [];
-      const drivingPrinciples = drivingPrinciplesResult || [];
+      if (filter === 'questions') {
+        // Load only Traffic Rules and Safe Driving questions (exclude Road Signs)
+        const [roadRulesResult, drivingPrinciplesResult] = await Promise.all([
+          supabaseAdmin.getTestQuestions('road_rules', language, 100),
+          supabaseAdmin.getTestQuestions('driving_principles', language, 100)
+        ]);
 
-      // Shuffle each subject's questions individually
-      const shuffledRoadSigns = roadSigns.sort(() => Math.random() - 0.5);
-      const shuffledRoadRules = roadRules.sort(() => Math.random() - 0.5);
-      const shuffledDrivingPrinciples = drivingPrinciples.sort(() => Math.random() - 0.5);
+        const roadRules = roadRulesResult || [];
+        const drivingPrinciples = drivingPrinciplesResult || [];
 
-      // Interleave questions in sequence: Traffic Rules -> Safe Driving -> Road Signs
-      const interleavedQuestions = [];
-      const maxLength = Math.max(shuffledRoadRules.length, shuffledDrivingPrinciples.length, shuffledRoadSigns.length);
-      
-      for (let i = 0; i < maxLength; i++) {
-        // Add Traffic Rules question (road_rules)
-        if (i < shuffledRoadRules.length) {
-          interleavedQuestions.push(shuffledRoadRules[i]);
+        // Shuffle each subject's questions individually
+        const shuffledRoadRules = roadRules.sort(() => Math.random() - 0.5);
+        const shuffledDrivingPrinciples = drivingPrinciples.sort(() => Math.random() - 0.5);
+
+        // Interleave Traffic Rules and Safe Driving questions
+        const maxLength = Math.max(shuffledRoadRules.length, shuffledDrivingPrinciples.length);
+        
+        for (let i = 0; i < maxLength; i++) {
+          if (i < shuffledRoadRules.length) {
+            interleavedQuestions.push(shuffledRoadRules[i]);
+          }
+          if (i < shuffledDrivingPrinciples.length) {
+            interleavedQuestions.push(shuffledDrivingPrinciples[i]);
+          }
         }
-        // Add Safe Driving question (driving_principles)
-        if (i < shuffledDrivingPrinciples.length) {
-          interleavedQuestions.push(shuffledDrivingPrinciples[i]);
-        }
-        // Add Road Signs question (road_signs)
-        if (i < shuffledRoadSigns.length) {
-          interleavedQuestions.push(shuffledRoadSigns[i]);
+      } else if (filter === 'road-signs') {
+        // Load only Road Signs questions
+        const roadSignsResult = await supabaseAdmin.getTestQuestions('road_signs', language, 100);
+        const roadSigns = roadSignsResult || [];
+        interleavedQuestions = roadSigns.sort(() => Math.random() - 0.5);
+      } else {
+        // Default: Load all subjects (existing behavior)
+        const [roadSignsResult, roadRulesResult, drivingPrinciplesResult] = await Promise.all([
+          supabaseAdmin.getTestQuestions('road_signs', language, 100),
+          supabaseAdmin.getTestQuestions('road_rules', language, 100),
+          supabaseAdmin.getTestQuestions('driving_principles', language, 100)
+        ]);
+
+        // Organize questions by subject
+        const roadSigns = roadSignsResult || [];
+        const roadRules = roadRulesResult || [];
+        const drivingPrinciples = drivingPrinciplesResult || [];
+
+        // Shuffle each subject's questions individually
+        const shuffledRoadSigns = roadSigns.sort(() => Math.random() - 0.5);
+        const shuffledRoadRules = roadRules.sort(() => Math.random() - 0.5);
+        const shuffledDrivingPrinciples = drivingPrinciples.sort(() => Math.random() - 0.5);
+
+        // Interleave questions in sequence: Traffic Rules -> Safe Driving -> Road Signs
+        const maxLength = Math.max(shuffledRoadRules.length, shuffledDrivingPrinciples.length, shuffledRoadSigns.length);
+        
+        for (let i = 0; i < maxLength; i++) {
+          // Add Traffic Rules question (road_rules)
+          if (i < shuffledRoadRules.length) {
+            interleavedQuestions.push(shuffledRoadRules[i]);
+          }
+          // Add Safe Driving question (driving_principles)
+          if (i < shuffledDrivingPrinciples.length) {
+            interleavedQuestions.push(shuffledDrivingPrinciples[i]);
+          }
+          // Add Road Signs question (road_signs)
+          if (i < shuffledRoadSigns.length) {
+            interleavedQuestions.push(shuffledRoadSigns[i]);
+          }
         }
       }
 
@@ -92,6 +127,15 @@ export const GuestStudyGuidePage: React.FC = () => {
     setCurrentPage(page);
     // Scroll to top when changing pages
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const getPageTitle = () => {
+    if (filter === 'questions') {
+      return 'LLR Questions (Traffic Rules & Safe Driving)';
+    } else if (filter === 'road-signs') {
+      return 'LLR Road Signs';
+    }
+    return t('llrCompleteSyllabus');
   };
 
   const getSubjectName = (subject: string) => {
@@ -223,7 +267,7 @@ export const GuestStudyGuidePage: React.FC = () => {
           <div className="hidden sm:block">
             <h1 className="text-lg font-semibold text-white flex items-center space-x-2">
               <BookOpen size={20} className="text-lime-400" />
-              <span>{t('llrCompleteSyllabus')}</span>
+              <span>{getPageTitle()}</span>
             </h1>
           </div>
         </div>
