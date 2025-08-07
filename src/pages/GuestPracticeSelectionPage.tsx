@@ -188,11 +188,11 @@ export const GuestPracticeSelectionPage: React.FC = () => {
         </div>
 
         {/* Professional Footer */}
-        <footer className="bg-gray-900 border-t border-gray-800 mt-12 sm:mt-16">
+        <footer className="bg-gray-900 border-t border-gray-800 mt-12 sm:mt-16 rounded-t-xl">
           <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
               {/* Company Info */}
-              <div className="space-y-3 sm:space-y-4">
+              <div className="space-y-3 sm:space-y-4 text-left">
                 <div className="flex items-center space-x-2">
                   <span className="text-xl sm:text-2xl font-bold">
                     <span className="text-lime-400">Bumpr</span> <span className="text-white">India</span>
@@ -239,7 +239,7 @@ export const GuestPracticeSelectionPage: React.FC = () => {
               </div>
 
               {/* Quick Links */}
-              <div className="space-y-3 sm:space-y-4">
+              <div className="space-y-3 sm:space-y-4 text-left">
                 <h3 className="text-white font-semibold text-sm sm:text-base">Quick Links</h3>
                 <ul className="space-y-1 sm:space-y-2">
                   <li>
@@ -266,7 +266,7 @@ export const GuestPracticeSelectionPage: React.FC = () => {
               </div>
 
               {/* Legal */}
-              <div className="space-y-3 sm:space-y-4">
+              <div className="space-y-3 sm:space-y-4 text-left">
                 <h3 className="text-white font-semibold text-sm sm:text-base">Legal</h3>
                 <ul className="space-y-1 sm:space-y-2">
                   <li>
@@ -293,7 +293,7 @@ export const GuestPracticeSelectionPage: React.FC = () => {
               </div>
 
               {/* Contact Info */}
-              <div className="space-y-3 sm:space-y-4">
+              <div className="space-y-3 sm:space-y-4 text-left">
                 <h3 className="text-white font-semibold text-sm sm:text-base">Contact</h3>
                 <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-gray-400">
                   <p>Email: support@bumpr.in</p>
@@ -304,11 +304,11 @@ export const GuestPracticeSelectionPage: React.FC = () => {
             </div>
 
             {/* Bottom Bar */}
-            <div className="border-t border-gray-800 mt-6 sm:mt-8 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-              <p className="text-gray-400 text-xs sm:text-sm">
+            <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0">
+              <p className="text-gray-400 text-xs sm:text-sm text-center sm:text-left">
                 © 2024 Bumpr India. All rights reserved.
               </p>
-              <div className="flex space-x-4 sm:space-x-6">
+              <div className="flex flex-wrap justify-center sm:justify-end space-x-4 sm:space-x-6">
                 <a href="/sitemap" className="text-gray-400 hover:text-lime-400 transition-colors text-xs sm:text-sm touch-target">
                   Sitemap
                 </a>
