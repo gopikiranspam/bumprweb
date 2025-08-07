@@ -323,12 +323,16 @@ export const GuestStudyGuidePage: React.FC = () => {
                 {/* Question Header */}
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center space-x-2">
-                    <div className="bg-lime-400 text-black font-semibold px-2 py-1 rounded text-xs">
-                      {questionNumber}
-                    </div>
-                    <div className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">
-                      {getSubjectName(question.subject)}
-                    </div>
+                    {!isRoadSignsOnly && (
+                      <>
+                        <div className="bg-lime-400 text-black font-semibold px-2 py-1 rounded text-xs">
+                          {questionNumber}
+                        </div>
+                        <div className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">
+                          {getSubjectName(question.subject)}
+                        </div>
+                      </>
+                    )}
                   </div>
                   {question.difficulty_level && (
                     <div className={`px-2 py-1 rounded border text-xs ${getDifficultyColor(question.difficulty_level)}`}>
@@ -354,11 +358,16 @@ export const GuestStudyGuidePage: React.FC = () => {
                       </div>
                     )}
                     
-                    {/* Answer Text with Question Styling */}
+                    {/* Answer Text with Serial Number on Right */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-white text-xs font-medium leading-relaxed">
-                        {getCorrectAnswerText(question)}
-                      </h3>
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-white text-xs font-medium leading-relaxed flex-1">
+                          {getCorrectAnswerText(question)}
+                        </h3>
+                        <div className="bg-lime-400 text-black font-semibold px-2 py-1 rounded text-xs ml-2 flex-shrink-0">
+                          {questionNumber}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ) : (
