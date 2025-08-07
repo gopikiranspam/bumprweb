@@ -30,35 +30,35 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   const getOptionStyle = (optionValue: number) => {
     if (!showFeedback && !showExplanation) {
       return selectedAnswer === optionValue
-        ? 'bg-lime-400 text-black border-lime-400'
-        : 'bg-gray-800 text-white border-gray-600 hover:border-gray-500';
+        ? 'bg-gradient-to-r from-lime-400 to-lime-300 text-black border-lime-400 shadow-lg shadow-lime-400/25'
+        : 'bg-gray-800/50 backdrop-blur-sm text-white border-gray-600/50 hover:border-lime-400/50 hover:bg-gray-700/60';
     }
 
     // Show feedback or explanation mode
     if (optionValue === question.correct_answer) {
-      return 'bg-green-500/20 text-green-400 border-green-500';
+      return 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-400 border-green-500/60 shadow-lg shadow-green-500/10';
     }
     if (selectedAnswer === optionValue && optionValue !== question.correct_answer) {
-      return 'bg-red-500/20 text-red-400 border-red-500';
+      return 'bg-gradient-to-r from-red-500/20 to-rose-500/20 text-red-400 border-red-500/60 shadow-lg shadow-red-500/10';
     }
-    return 'bg-gray-800 text-gray-400 border-gray-600';
+    return 'bg-gray-800/30 backdrop-blur-sm text-gray-400 border-gray-600/40';
   };
 
   const getOptionCircleStyle = (optionValue: number) => {
     if (!showFeedback && !showExplanation) {
       return selectedAnswer === optionValue
-        ? 'border-black bg-black text-lime-400'
-        : 'border-current';
+        ? 'border-black bg-black text-lime-400 shadow-lg shadow-black/30'
+        : 'border-current bg-transparent group-hover:bg-lime-400/10 group-hover:border-lime-400';
     }
 
     // Show feedback or explanation mode
     if (optionValue === question.correct_answer) {
-      return 'border-green-400 bg-green-400 text-green-900';
+      return 'border-green-400 bg-green-400 text-green-900 shadow-lg shadow-green-400/30';
     }
     if (selectedAnswer === optionValue && optionValue !== question.correct_answer) {
-      return 'border-red-400 bg-red-400 text-red-900';
+      return 'border-red-400 bg-red-400 text-red-900 shadow-lg shadow-red-400/30';
     }
-    return 'border-current';
+    return 'border-current bg-transparent';
   };
 
   return (
@@ -106,15 +106,15 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
             key={option.value}
             onClick={() => !showFeedback && !showExplanation && onAnswerSelect(option.value)}
             disabled={showFeedback || showExplanation}
-            className={`w-full flex justify-start text-left p-3 sm:p-4 rounded-lg border-2 transition-all duration-200 touch-target ${getOptionStyle(option.value)} ${
+            className={`group w-full flex items-center text-left p-4 sm:p-5 rounded-xl border-2 transition-all duration-300 ease-out touch-target shadow-sm hover:shadow-md ${getOptionStyle(option.value)} ${
               !showFeedback && !showExplanation ? 'hover:scale-[1.02] active:scale-[0.98]' : 'cursor-default'
             }`}
           >
-            <div className="flex items-start space-x-2 sm:space-x-3">
-              <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 flex items-center justify-center text-xs sm:text-sm font-bold flex-shrink-0 mt-0.5 ${getOptionCircleStyle(option.value)}`}>
+            <div className="flex items-center space-x-3 sm:space-x-4 w-full">
+              <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 flex items-center justify-center text-sm sm:text-base font-bold flex-shrink-0 transition-all duration-300 ${getOptionCircleStyle(option.value)}`}>
                 {String.fromCharCode(64 + option.value)}
               </div>
-              <div className="flex-1 font-medium text-xs sm:text-sm leading-relaxed text-left">
+              <div className="flex-1 font-medium text-sm sm:text-base leading-relaxed text-left min-w-0">
                 {option.text}
               </div>
             </div>
