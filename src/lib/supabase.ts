@@ -115,5 +115,23 @@ export const db = {
       .select()
       .single();
     return { data, error };
+  },
+
+  // FAQ operations
+  async getFAQs(limit?: number) {
+    if (!supabase) throw new Error('Supabase not configured');
+    let query = supabase
+      .from('faq')
+      .select('*')
+      .eq('is_active', true)
+      .order('display_order', { ascending: true })
+      .order('created_at', { ascending: true });
+    
+    if (limit) {
+      query = query.limit(limit);
+    }
+    
+    const { data, error } = await query;
+    return { data, error };
   }
 };

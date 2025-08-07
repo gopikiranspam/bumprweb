@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { Logo } from '../components/Logo';
 import { LanguageSelector } from '../components/LanguageSelector';
+import { FAQSection } from '../components/FAQSection';
 import { useLanguage } from '../contexts/LanguageProvider';
 
 export const GuestPracticeSelectionPage: React.FC = () => {
@@ -229,6 +230,8 @@ export const GuestPracticeSelectionPage: React.FC = () => {
           </div>
         </div>
 
+        {/* FAQ Section */}
+        <FAQSection />
         {/* Professional Footer */}
         <footer className="bg-gray-900 border-t border-gray-800 mt-12 sm:mt-16 rounded-t-xl">
           <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12">
