@@ -238,32 +238,36 @@ export const GuestStudyGuidePage: React.FC = () => {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header Section */}
-        <div className="text-center mb-8">
-          <div className="mb-6">
-            <button className="bg-lime-400 hover:bg-lime-300 text-black font-bold py-3 px-8 rounded-lg text-2xl transition-colors mb-2">
-              LLR Complete Syllabus
-            </button>
+        {/* Page Information */}
+        <div className="text-center mb-6">
+          <div className="bg-gray-900 rounded-lg p-3 inline-block">
+            <div className="text-lime-400 font-semibold text-sm">
+              Page {currentPage} of {totalPages}
+            </div>
+            <div className="text-gray-400 text-xs mt-1">
+              Questions {startIndex + 1}-{Math.min(endIndex, allQuestions.length)} of {allQuestions.length}
+            </div>
           </div>
         </div>
 
         {/* Questions List */}
-        <div className="space-y-4 mb-8">
+        <div className="space-y-3 mb-8">
           {currentQuestions.map((question, index) => {
             const questionNumber = startIndex + index + 1;
             return (
-              <div key={question.id} className="bg-gray-900 rounded-xl p-4 space-y-3">
+              <div key={question.id} className="bg-gray-900 rounded-lg p-3 space-y-2">
                 {/* Question Header */}
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center space-x-3">
-                    <div className="bg-lime-400 text-black font-bold px-2 py-1 rounded text-xs">
+                <div className="flex items-start justify-between mb-2">
+                  <div className="flex items-center space-x-2">
+                    <div className="bg-lime-400 text-black font-semibold px-2 py-1 rounded text-xs">
                       {questionNumber}
                     </div>
-                    <div className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs">
+                    <div className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">
                       {getSubjectName(question.subject)}
                     </div>
                   </div>
                   {question.difficulty_level && (
-                    <div className={`px-2 py-1 rounded border text-xs font-medium ${getDifficultyColor(question.difficulty_level)}`}>
+                    <div className={`px-2 py-1 rounded border text-xs ${getDifficultyColor(question.difficulty_level)}`}>
                       {question.difficulty_level.charAt(0).toUpperCase() + question.difficulty_level.slice(1)}
                     </div>
                   )}
@@ -271,7 +275,7 @@ export const GuestStudyGuidePage: React.FC = () => {
 
                 {/* Question Image */}
                 {question.image_url && (
-                  <div className="w-full h-40 bg-gray-800 rounded-lg overflow-hidden mb-3">
+                  <div className="w-full h-32 bg-gray-800 rounded-lg overflow-hidden mb-2">
                     <img
                       src={question.image_url}
                       alt="Question illustration"
@@ -282,21 +286,21 @@ export const GuestStudyGuidePage: React.FC = () => {
                 )}
 
                 {/* Question Text */}
-                <div className="mb-3">
-                  <h3 className="text-white text-sm font-medium leading-relaxed mb-2">
+                <div className="mb-2">
+                  <h3 className="text-white text-xs font-medium leading-relaxed">
                     {question.question_text}
                   </h3>
                 </div>
 
                 {/* Answer Options */}
                 {/* Correct Answer Only */}
-                <div className="mb-3">
+                <div className="mb-2">
                   <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-3">
-                    <div className="flex items-start space-x-3">
-                      <div className="bg-green-400 text-green-900 font-bold px-2 py-1 rounded text-xs flex-shrink-0 mt-0.5">
-                        ANSWER
+                    <div className="flex items-start space-x-2">
+                      <div className="bg-green-400 text-green-900 font-semibold px-2 py-1 rounded text-xs flex-shrink-0">
+                        {question.correct_answer}. Answer
                       </div>
-                      <span className="text-green-300 text-sm font-medium leading-relaxed">
+                      <span className="text-green-300 text-xs leading-relaxed">
                         {getCorrectAnswerText(question)}
                       </span>
                     </div>
@@ -306,7 +310,7 @@ export const GuestStudyGuidePage: React.FC = () => {
                 {/* Explanation */}
                 {question.explanation && (
                   <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-3">
-                    <h4 className="font-semibold text-blue-400 mb-1 text-xs">Explanation</h4>
+                    <h4 className="font-medium text-blue-400 mb-1 text-xs">Explanation</h4>
                     <p className="text-blue-300 text-xs leading-relaxed">
                       {question.explanation}
                     </p>
