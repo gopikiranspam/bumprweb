@@ -39,12 +39,17 @@ export const FAQSection: React.FC = () => {
         .order('display_order', { ascending: true })
         .order('created_at', { ascending: true });
 
-      if (error) throw error;
+      if (error) {
+        if (error.code === '42P01') {
+          throw new Error('FAQ table not found. Please apply the database migration first.');
+        }
+        throw error;
+      }
 
       setFaqs(data || []);
     } catch (err: any) {
       console.error('Error loading FAQs:', err);
-      setError('Failed to load FAQs. Please try again later.');
+      setError(err.message || 'Failed to load FAQs. Please try again later.');
     } finally {
       setLoading(false);
     }

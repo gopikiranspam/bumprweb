@@ -45,7 +45,7 @@ export const supabaseAdmin = {
       throw new Error('Supabase not configured');
     }
 
-    const tables = ['users', 'questions', 'test_results', 'user_progress'];
+    const tables = ['users', 'questions', 'test_results', 'user_progress', 'faq'];
     const results: Record<string, boolean> = {};
 
     for (const table of tables) {
