@@ -168,7 +168,7 @@ export const GuestPracticeSelectionPage: React.FC = () => {
               className="w-full bg-lime-400 hover:bg-lime-300 text-black font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2 touch-target"
             >
               <Play size={16} />
-              <span>{t('start')}</span>
+              <span>Start Practice</span>
             </button>
           </div>
         </div>
