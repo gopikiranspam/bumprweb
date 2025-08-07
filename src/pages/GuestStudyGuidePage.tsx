@@ -30,7 +30,7 @@ export const GuestStudyGuidePage: React.FC = () => {
 
   useEffect(() => {
     loadAllQuestions();
-  }, [language]);
+  }, [language, filter]);
 
   const loadAllQuestions = async () => {
     setLoading(true);
