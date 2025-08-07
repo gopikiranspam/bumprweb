@@ -56,6 +56,12 @@ const translations = {
     passRate: 'Pass Rate',
     llrCompleteSyllabus: 'LLR Complete Syllabus',
     start: 'Start',
+    guestCompleteSyllabusMode: 'Guest Complete Syllabus Mode',
+    guestSyllabusDescription: 'You\'re using the LLR Complete Syllabus as a guest. Sign up to access personalized study plans and track your progress.',
+    signUpFullAccess: 'Sign up for full access',
+    pageOf: 'Page',
+    questionsOf: 'Questions',
+    of: 'of',
   },
   te: {
     appName: 'బంప్ర్',
@@ -94,6 +100,12 @@ const translations = {
     passRate: 'ఉత్తీర్ణత రేటు',
     llrCompleteSyllabus: 'LLR పూర్తి సిలబస్',
     start: 'ప్రారంభించండి',
+    guestCompleteSyllabusMode: 'అతిథి పూర్తి సిలబస్ మోడ్',
+    guestSyllabusDescription: 'మీరు LLR పూర్తి సిలబస్‌ను అతిథిగా ఉపయోగిస్తున్నారు. వ్యక్తిగతీకరించిన అధ్యయన ప్రణాళికలను యాక్సెస్ చేయడానికి మరియు మీ పురోగతిని ట్రాక్ చేయడానికి సైన్ అప్ చేయండి.',
+    signUpFullAccess: 'పూర్తి యాక్సెస్ కోసం సైన్ అప్ చేయండి',
+    pageOf: 'పేజీ',
+    questionsOf: 'ప్రశ్నలు',
+    of: 'యొక్క',
   },
   hi: {
     appName: 'बम्पर',
@@ -132,6 +144,12 @@ const translations = {
     passRate: 'पास दर',
     llrCompleteSyllabus: 'LLR पूर्ण पाठ्यक्रम',
     start: 'शुरू करें',
+    guestCompleteSyllabusMode: 'अतिथि पूर्ण पाठ्यक्रम मोड',
+    guestSyllabusDescription: 'आप LLR पूर्ण पाठ्यक्रम को अतिथि के रूप में उपयोग कर रहे हैं। व्यक्तिगत अध्ययन योजनाओं तक पहुंचने और अपनी प्रगति को ट्रैक करने के लिए साइन अप करें।',
+    signUpFullAccess: 'पूर्ण पहुंच के लिए साइन अप करें',
+    pageOf: 'पृष्ठ',
+    questionsOf: 'प्रश्न',
+    of: 'का',
   },
 };
 

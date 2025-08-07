@@ -321,7 +321,7 @@ export const GuestStudyGuidePage: React.FC = () => {
           <div className="bg-gray-900 rounded-xl p-4">
             <div className="flex flex-col items-center space-y-4">
               <div className="text-gray-400 text-sm">
-                Page {currentPage} of {totalPages}
+                {t('pageOf')} {currentPage} {t('of')} {totalPages}
               </div>
               {renderPagination()}
             </div>
