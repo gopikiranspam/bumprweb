@@ -41,8 +41,6 @@ export const Header: React.FC<HeaderProps> = ({ onMenuClick, showMenu = true }) 
           </div>
 
           <div className="flex items-center space-x-2 sm:space-x-4">
-            <LanguageSelector />
-            
             {user && (
               <div className="flex items-center space-x-2 sm:space-x-3">
                 <div className="hidden sm:flex items-center space-x-3">
@@ -70,6 +68,15 @@ export const Header: React.FC<HeaderProps> = ({ onMenuClick, showMenu = true }) 
                   <LogOut size={18} className="text-gray-400" />
                 </button>
               </div>
+            )}
+            
+            {!user && (
+              <button
+                onClick={() => window.location.href = '/auth'}
+                className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors touch-target"
+              >
+                Login
+              </button>
             )}
           </div>
         </div>

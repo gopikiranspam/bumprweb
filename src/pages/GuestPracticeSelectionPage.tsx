@@ -62,10 +62,20 @@ export const GuestPracticeSelectionPage: React.FC = () => {
           </button>
           <Logo size="sm" />
         </div>
-        <LanguageSelector />
+        <button
+          onClick={() => navigate('/auth')}
+          className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors touch-target"
+        >
+          Login
+        </button>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 safe-area-left safe-area-right">
+        {/* Language Selector - Relocated to top-right of main content */}
+        <div className="flex justify-end mb-4">
+          <LanguageSelector />
+        </div>
+        
         {/* Hero Section with Key Selling Points */}
         <div className="text-center mb-8 sm:mb-12">
           <div className="mb-6">

@@ -235,11 +235,21 @@ export const GuestMockTestPage: React.FC = () => {
             <User size={16} className="text-yellow-400" />
             <span className="text-yellow-400 text-sm font-medium">Guest</span>
           </div>
-          <LanguageSelector />
+          <button
+            onClick={() => navigate('/auth')}
+            className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors touch-target"
+          >
+            Login
+          </button>
         </div>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Language Selector - Relocated to top-right of main content */}
+        <div className="flex justify-end mb-4">
+          <LanguageSelector />
+        </div>
+        
         {!testStarted && !testCompleted && (
           <div className="text-center space-y-8">
             <div>
