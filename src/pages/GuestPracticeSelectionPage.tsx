@@ -165,7 +165,7 @@ export const GuestPracticeSelectionPage: React.FC = () => {
 
             <button
               onClick={() => navigate('/guest-study-guide')}
-              className="w-full bg-lime-400 hover:bg-lime-300 text-black font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2 touch-target"
+              className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2 touch-target"
             >
               <Play size={16} />
               <span>Start Practice</span>
