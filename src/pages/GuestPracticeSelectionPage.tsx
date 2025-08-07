@@ -157,7 +157,7 @@ export const GuestPracticeSelectionPage: React.FC = () => {
 
         {/* LLR Complete Syllabus Button */}
         <div className="mb-6 sm:mb-8">
-          <div className="bg-lime-500/10 border border-lime-500/30 rounded-xl p-4 sm:p-6 space-y-3 sm:space-y-4">
+          <div className="bg-gradient-to-r from-lime-400/10 to-green-400/10 border border-lime-400/30 rounded-xl p-4 sm:p-6 text-center">
             <div className="flex items-center space-x-2 sm:space-x-3">
               <BookOpen size={24} className="text-lime-400" />
               <h3 className="font-semibold text-white text-sm sm:text-base">LLR Syllabus Book</h3>
