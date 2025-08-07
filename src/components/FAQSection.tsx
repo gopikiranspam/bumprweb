@@ -247,15 +247,17 @@ export const FAQSection: React.FC = () => {
               {/* Answer */}
               <div
                 id={`faq-answer-${faq.id}`}
-                className={`transition-all duration-300 ease-in-out ${
-                  isExpanded 
-                    ? 'max-h-96 opacity-100' 
-                    : 'max-h-0 opacity-0'
-                } overflow-hidden`}
+                className={`faq-answer ${isExpanded ? 'expanded' : 'collapsed'}`}
+                style={{
+                  maxHeight: isExpanded ? '500px' : '0',
+                  opacity: isExpanded ? 1 : 0,
+                  paddingTop: isExpanded ? '0.75rem' : '0',
+                  paddingBottom: isExpanded ? '1.25rem' : '0'
+                }}
               >
-                <div className="px-4 sm:px-5 pb-4 sm:pb-5">
-                  <div className="pl-8 sm:pl-10">
-                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                <div className="faq-answer-content px-4 sm:px-5">
+                  <div className="pl-8 sm:pl-10 transform">
+                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed will-change-transform">
                       {faq.answer}
                     </p>
                   </div>

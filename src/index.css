@@ -300,6 +300,7 @@ textarea:focus-visible {
 /* FAQ Section Specific Styles */
 .faq-item {
   transition: all 0.2s ease-in-out;
+  transform: translateZ(0); /* Hardware acceleration */
 }
 
 .faq-item:hover {
@@ -307,34 +308,42 @@ textarea:focus-visible {
   box-shadow: 0 4px 12px rgba(193, 255, 114, 0.1);
 }
 
+/* Smooth FAQ dropdown animations */
 .faq-answer {
-  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  will-change: max-height, opacity, padding;
+  transform: translateZ(0); /* Hardware acceleration */
+  backface-visibility: hidden; /* Prevent visual artifacts */
+}
+
+.faq-answer.expanded {
+  /* Smooth expansion state */
+  transform: translateZ(0);
+}
+
+.faq-answer.collapsed {
+  /* Smooth collapse state */
+  transform: translateZ(0);
+}
+
+.faq-answer-content {
+  /* Prevent content jumping during animation */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Enhanced hover effects for FAQ buttons */
 .faq-question-button:hover {
   background-color: rgba(55, 65, 81, 0.8);
+  transform: translateZ(0); /* Hardware acceleration */
 }
 
 .faq-question-button:focus {
   outline: 2px solid #c1ff72;
   outline-offset: 2px;
-}
-
-/* Smooth animations for FAQ expand/collapse */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.faq-answer-content {
-  animation: fadeInUp 0.3s ease-out;
 }
 
 /* Pagination specific styles */
@@ -344,11 +353,19 @@ textarea:focus-visible {
 
 .faq-pagination button {
   transition: all 0.2s ease-in-out;
+  transform: translateZ(0); /* Hardware acceleration */
 }
 
 .faq-pagination button:hover:not(:disabled) {
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Prevent visual artifacts during animations */
+.faq-item * {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Mobile optimizations for FAQ */
@@ -361,12 +378,17 @@ textarea:focus-visible {
     padding: 1rem;
   }
   
-  .faq-answer-content {
+  .faq-answer .faq-answer-content {
     padding: 0.75rem 1rem 1rem 1rem;
   }
   
   .faq-pagination {
     flex-wrap: wrap;
     justify-content: center;
+  }
+  
+  /* Optimize mobile animations */
+  .faq-answer {
+    transition-duration: 0.3s; /* Slightly faster on mobile */
   }
 }
