@@ -72,7 +72,7 @@ export const Header: React.FC<HeaderProps> = ({ onMenuClick, showMenu = true }) 
             
             {!user && (
               <button
-                onClick={() => window.location.href = '/login'}
+                onClick={() => window.location.href = '/auth'}
                 className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors touch-target"
               >
                 Login
