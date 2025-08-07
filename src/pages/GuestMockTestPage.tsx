@@ -98,15 +98,6 @@ export const GuestMockTestPage: React.FC = () => {
     }
     
     setShowAnswerFeedback(true);
-    
-    // Auto-advance after 2 seconds to show feedback
-    setTimeout(() => {
-      if (currentQuestionIndex < questions.length - 1) {
-        handleNextQuestion();
-      } else {
-        handleSubmitTest();
-      }
-    }, 2000);
   };
 
   const handleNextQuestion = () => {
@@ -331,7 +322,7 @@ export const GuestMockTestPage: React.FC = () => {
                     key={currentQuestionIndex}
                     duration={QUESTION_DURATION}
                     onTimeUp={handleQuestionTimeUp}
-                    isActive={testStarted && !testCompleted && !showAnswerFeedback}
+                    isActive={testStarted && !testCompleted}
                   />
                 }
               />
@@ -340,7 +331,7 @@ export const GuestMockTestPage: React.FC = () => {
               <div className="flex justify-between items-center">
                 <button
                   onClick={handlePreviousQuestion}
-                  disabled={currentQuestionIndex === 0 || showAnswerFeedback}
+                  disabled={currentQuestionIndex === 0}
                   className="bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-lg transition-colors"
                 >
                   {t('previous')}
@@ -353,7 +344,6 @@ export const GuestMockTestPage: React.FC = () => {
                 {currentQuestionIndex === questions.length - 1 ? (
                   <button
                     onClick={handleSubmitTest}
-                    disabled={showAnswerFeedback}
                     className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors"
                   >
                     {t('submit')}
@@ -361,7 +351,6 @@ export const GuestMockTestPage: React.FC = () => {
                 ) : (
                   <button
                     onClick={handleNextQuestion}
-                    disabled={showAnswerFeedback}
                     className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-4 rounded-lg transition-colors"
                   >
                     {t('next')}
