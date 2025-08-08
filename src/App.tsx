@@ -13,6 +13,10 @@ import { GuestPracticeSelectionPage } from './pages/GuestPracticeSelectionPage';
 import { GuestPracticeTestPage } from './pages/GuestPracticeTestPage';
 import { GuestMockTestPage } from './pages/GuestMockTestPage';
 import { GuestStudyGuidePage } from './pages/GuestStudyGuidePage';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { TermsConditionsPage } from './pages/TermsConditionsPage';
+import { DisclaimerPage } from './pages/DisclaimerPage';
+import { AboutPage } from './pages/AboutPage';
 
 // Loading component
 const LoadingSpinner: React.FC = () => (
@@ -80,6 +84,12 @@ const AppRoutes: React.FC = () => {
         <Route path="/guest-practice/:subject" element={<GuestPracticeTestPage />} />
         <Route path="/guest-mock-test" element={<GuestMockTestPage />} />
         <Route path="/guest-study-guide" element={<GuestStudyGuidePage />} />
+        
+        {/* Legal and Info Pages */}
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms-conditions" element={<TermsConditionsPage />} />
+        <Route path="/disclaimer" element={<DisclaimerPage />} />
+        <Route path="/about" element={<AboutPage />} />
 
         {/* Default redirect */}
         <Route path="/" element={<Navigate to="/guest-practice" replace />} />
