@@ -126,14 +126,79 @@ export const GuestPracticeSelectionPage: React.FC = () => {
             <p className="text-gray-300 text-base sm:text-lg">
               All the questions and answers as per India Motor Vehicles Act, 1988
             </p>
-            <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 text-xs sm:text-sm">
-              <span className="bg-lime-400/10 text-lime-400 px-2 sm:px-3 py-1 rounded-full">Maharashtra</span>
-              <span className="bg-lime-400/10 text-lime-400 px-2 sm:px-3 py-1 rounded-full">Karnataka</span>
-              <span className="bg-lime-400/10 text-lime-400 px-2 sm:px-3 py-1 rounded-full">Tamil Nadu</span>
-              <span className="bg-lime-400/10 text-lime-400 px-2 sm:px-3 py-1 rounded-full">Delhi</span>
-              <span className="bg-lime-400/10 text-lime-400 px-2 sm:px-3 py-1 rounded-full">Gujarat</span>
-              <span className="bg-lime-400/10 text-lime-400 px-2 sm:px-3 py-1 rounded-full">+ 23 More States</span>
+            
+            {/* Interactive Dropdowns */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+              {/* State Dropdown */}
+              <div className="relative">
+                <label className="block text-white text-sm font-medium mb-2">Choose Your State</label>
+                <select className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-lime-400 focus:ring-2 focus:ring-lime-400/20 appearance-none cursor-pointer">
+                  <option value="">Select State</option>
+                  <option value="andhra-pradesh">Andhra Pradesh</option>
+                  <option value="arunachal-pradesh">Arunachal Pradesh</option>
+                  <option value="assam">Assam</option>
+                  <option value="bihar">Bihar</option>
+                  <option value="chhattisgarh">Chhattisgarh</option>
+                  <option value="goa">Goa</option>
+                  <option value="gujarat">Gujarat</option>
+                  <option value="haryana">Haryana</option>
+                  <option value="himachal-pradesh">Himachal Pradesh</option>
+                  <option value="jharkhand">Jharkhand</option>
+                  <option value="karnataka">Karnataka</option>
+                  <option value="kerala">Kerala</option>
+                  <option value="madhya-pradesh">Madhya Pradesh</option>
+                  <option value="maharashtra">Maharashtra</option>
+                  <option value="manipur">Manipur</option>
+                  <option value="meghalaya">Meghalaya</option>
+                  <option value="mizoram">Mizoram</option>
+                  <option value="nagaland">Nagaland</option>
+                  <option value="odisha">Odisha</option>
+                  <option value="punjab">Punjab</option>
+                  <option value="rajasthan">Rajasthan</option>
+                  <option value="sikkim">Sikkim</option>
+                  <option value="tamil-nadu">Tamil Nadu</option>
+                  <option value="telangana">Telangana</option>
+                  <option value="tripura">Tripura</option>
+                  <option value="uttar-pradesh">Uttar Pradesh</option>
+                  <option value="uttarakhand">Uttarakhand</option>
+                  <option value="west-bengal">West Bengal</option>
+                </select>
+                {/* Custom dropdown arrow */}
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none mt-8">
+                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Language Dropdown */}
+              <div className="relative">
+                <label className="block text-white text-sm font-medium mb-2">Preferred Language</label>
+                <select className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-lime-400 focus:ring-2 focus:ring-lime-400/20 appearance-none cursor-pointer">
+                  <option value="">Select Language</option>
+                  <option value="hindi">Hindi</option>
+                  <option value="bengali">Bengali</option>
+                  <option value="marathi">Marathi</option>
+                  <option value="telugu">Telugu</option>
+                  <option value="tamil">Tamil</option>
+                  <option value="gujarati">Gujarati</option>
+                  <option value="urdu">Urdu</option>
+                  <option value="kannada">Kannada</option>
+                  <option value="odia">Odia</option>
+                  <option value="malayalam">Malayalam</option>
+                </select>
+                {/* Custom dropdown arrow */}
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none mt-8">
+                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
             </div>
+            
+            <p className="text-gray-400 text-sm mt-4">
+              Available in all states and multiple languages for comprehensive RTO test preparation
+            </p>
           </div>
         </div>
 
