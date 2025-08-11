@@ -8,8 +8,16 @@ export const LanguageSelector: React.FC = () => {
 
   const languages = [
     { code: 'en', name: 'English', native: 'English' },
-    { code: 'te', name: 'Telugu', native: 'తెలుగు' },
     { code: 'hi', name: 'Hindi', native: 'हिंदी' },
+    { code: 'bn', name: 'Bengali', native: 'বাংলা' },
+    { code: 'mr', name: 'Marathi', native: 'मराठी' },
+    { code: 'te', name: 'Telugu', native: 'తెలుగు' },
+    { code: 'ta', name: 'Tamil', native: 'தமிழ்' },
+    { code: 'gu', name: 'Gujarati', native: 'ગુજરાતી' },
+    { code: 'ur', name: 'Urdu', native: 'اردو' },
+    { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ' },
+    { code: 'or', name: 'Odia', native: 'ଓଡ଼ିଆ' },
+    { code: 'ml', name: 'Malayalam', native: 'മലയാളം' },
   ];
 
   const currentLanguage = languages.find(lang => lang.code === language);
