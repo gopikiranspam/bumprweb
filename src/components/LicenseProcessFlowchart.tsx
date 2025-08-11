@@ -144,7 +144,7 @@ export const LicenseProcessFlowchart: React.FC = () => {
                   
                   {/* Modern Button */}
                   {step.hasButton && (
-                    <button className="bg-lime-400 hover:bg-lime-300 text-black font-medium text-xs py-1 px-3 rounded-full transition-colors touch-target">
+                    <button className="bg-lime-400 hover:bg-lime-300 text-black font-medium text-xs py-0.5 px-3 rounded-full transition-colors touch-target">
                       {step.buttonText}
                     </button>
                   )}
