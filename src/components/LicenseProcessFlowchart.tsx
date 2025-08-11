@@ -75,16 +75,16 @@ export const LicenseProcessFlowchart: React.FC = () => {
 
       {/* Desktop Flow - Single Row */}
       <div className="hidden lg:block">
-        <div className="flex items-center justify-between relative max-w-6xl mx-auto">
+        <div className="flex items-start justify-between relative max-w-6xl mx-auto">
           {/* Connection Line */}
-          <div className="absolute top-6 left-12 right-12 h-0.5 bg-gray-700"></div>
+          <div className="absolute top-6 left-12 right-12 h-0.5 bg-gray-700 z-0"></div>
           
           {steps.map((step, index) => {
             const Icon = step.icon;
             const isMilestone = step.type === 'milestone';
             
             return (
-              <div key={step.id} className="relative flex flex-col items-center z-10 flex-1 max-w-32">
+              <div key={step.id} className="relative flex flex-col items-center z-10 flex-1 max-w-28">
                 {/* Step Circle */}
                 <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-3 transition-all duration-300 ${
                   isMilestone 
@@ -96,12 +96,12 @@ export const LicenseProcessFlowchart: React.FC = () => {
 
                 {/* Content */}
                 <div className="text-center">
-                  <h3 className="text-white font-medium text-sm mb-2 leading-tight">
+                  <h3 className="text-white font-medium text-xs mb-2 leading-tight min-h-[2.5rem] flex items-center justify-center">
                     {step.title}
                   </h3>
                   
                   {step.hasButton && (
-                    <button className="bg-gray-700 hover:bg-gray-600 text-white text-xs py-1 px-3 rounded transition-colors">
+                    <button className="bg-gray-700 hover:bg-gray-600 text-white text-xs py-1 px-2 rounded transition-colors">
                       Learn
                     </button>
                   )}
