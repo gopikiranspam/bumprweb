@@ -13,6 +13,7 @@ import {
 import { Logo } from '../components/Logo';
 import { LanguageSelector } from '../components/LanguageSelector';
 import { FAQSection } from '../components/FAQSection';
+import { LicenseProcessFlowchart } from '../components/LicenseProcessFlowchart';
 import { useLanguage } from '../contexts/LanguageProvider';
 
 export const GuestPracticeSelectionPage: React.FC = () => {
@@ -229,6 +230,9 @@ export const GuestPracticeSelectionPage: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* License Process Flowchart */}
+        <LicenseProcessFlowchart />
 
         {/* FAQ Section */}
         <FAQSection />
