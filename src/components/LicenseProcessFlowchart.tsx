@@ -1,49 +1,65 @@
-import React from 'react';
-import { Calendar, FileText, Trophy, Clock, Car, CheckCircle, Award } from 'lucide-react';
+import React, { useState } from 'react';
+import { Calendar, FileText, Trophy, Clock, Car, CheckCircle, Award, Info } from 'lucide-react';
 
 export const LicenseProcessFlowchart: React.FC = () => {
+  const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
+
   const steps = [
     {
       id: 1,
       title: 'Book LLR Slot',
       icon: Calendar,
-      hasButton: true
+      hasButton: true,
+      buttonText: 'Apply Now',
+      buttonStyle: 'bg-blue-500 hover:bg-blue-600 text-white'
     },
     {
       id: 2,
       title: 'Pass LLR Exam',
       icon: FileText,
-      hasButton: true
+      hasButton: true,
+      buttonText: 'Mock Test',
+      buttonStyle: 'bg-green-500 hover:bg-green-600 text-white'
     },
     {
       id: 3,
       title: 'Get the LLR',
       icon: Trophy,
-      hasButton: false
+      hasButton: false,
+      hasTooltip: true,
+      tooltipText: 'You can apply for a permanent license after 30 days from the date of LLR issuance but within the 180-day validity period.'
     },
     {
       id: 4,
       title: 'Wait 30 Days',
       icon: Clock,
-      hasButton: false
+      hasButton: false,
+      hasTooltip: true,
+      tooltipText: 'You can apply for a permanent license after 30 days from the date of LLR issuance but within the 180-day validity period.'
     },
     {
       id: 5,
       title: 'Learn Driving',
       icon: Car,
-      hasButton: true
+      hasButton: true,
+      buttonText: 'Find Tutor',
+      buttonStyle: 'bg-purple-500 hover:bg-purple-600 text-white'
     },
     {
       id: 6,
       title: 'Book Driving Test',
       icon: FileText,
-      hasButton: true
+      hasButton: true,
+      buttonText: 'Apply Now',
+      buttonStyle: 'bg-orange-500 hover:bg-orange-600 text-white'
     },
     {
       id: 7,
       title: 'Pass Driving Test',
       icon: CheckCircle,
-      hasButton: false
+      hasButton: false,
+      hasTooltip: true,
+      tooltipText: 'You will get the license through post at your mentioned address'
     },
     {
       id: 8,
@@ -53,64 +69,90 @@ export const LicenseProcessFlowchart: React.FC = () => {
     }
   ];
 
+  const handleTooltipToggle = (stepId: string) => {
+    setActiveTooltip(activeTooltip === stepId ? null : stepId);
+  };
+
   return (
-    <section className="bg-gray-900 rounded-xl p-6 mt-8">
+    <section className="bg-gray-900 rounded-xl p-4 sm:p-6 mt-8">
       {/* Header */}
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-white mb-2">
+      <div className="text-center mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2">
           Your License Journey
         </h2>
-        <p className="text-gray-400">
+        <p className="text-sm sm:text-base lg:text-lg text-gray-400">
           8 simple steps to get your driving license
         </p>
       </div>
 
-      {/* Desktop Flow - Single Row (Landscape only) */}
-      {/* Unified Flow - Vertical for All Devices */}
-      <div className="block">
-        <div className="space-y-4">
-          {steps.map((step, index) => {
-            const Icon = step.icon;
-            
-            return (
-              <div key={step.id} className="relative">
-                {/* Connection Line */}
-                {index < steps.length - 1 && (
-                  <div className="absolute top-12 left-6 w-0.5 h-8 bg-gray-700"></div>
-                )}
+      {/* Vertical Flow for All Devices */}
+      <div className="space-y-3 sm:space-y-4">
+        {steps.map((step, index) => {
+          const Icon = step.icon;
+          const tooltipId = `tooltip-${step.id}`;
+          
+          return (
+            <div key={step.id} className="relative">
+              {/* Connection Line */}
+              {index < steps.length - 1 && (
+                <div className="absolute top-12 left-6 w-0.5 h-6 sm:h-8 bg-gray-700 z-0"></div>
+              )}
 
-                <div className="flex items-center space-x-4">
-                  {/* Step Circle */}
-                  <div className="relative flex-shrink-0">
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 bg-gray-800 text-white border-2 border-gray-600">
-                      <Icon size={20} />
-                    </div>
+              <div className="flex items-center space-x-3 sm:space-x-4">
+                {/* Step Circle */}
+                <div className="relative flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 bg-gray-800 text-white border-2 border-gray-600">
+                    <Icon size={20} />
                   </div>
+                </div>
 
-                  {/* Content */}
-                  <div className="flex-1 flex items-center justify-between">
-                    <h3 className="text-white font-medium text-sm">
+                {/* Content */}
+                <div className="flex-1 flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <h3 className="text-white font-medium text-sm sm:text-base lg:text-lg">
                       {step.title}
                     </h3>
                     
-                    {step.hasButton && (
-                      <button className="bg-lime-400 hover:bg-lime-300 text-black font-medium text-xs py-1.5 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md touch-target">
-                        Learn
-                      </button>
+                    {/* Info Icon with Tooltip */}
+                    {step.hasTooltip && (
+                      <div className="relative">
+                        <button
+                          onClick={() => handleTooltipToggle(tooltipId)}
+                          onMouseEnter={() => setActiveTooltip(tooltipId)}
+                          onMouseLeave={() => setActiveTooltip(null)}
+                          className="text-blue-400 hover:text-blue-300 transition-colors p-1 rounded-full hover:bg-blue-400/10"
+                          aria-label="More information"
+                        >
+                          <Info size={16} />
+                        </button>
+                        
+                        {/* Tooltip */}
+                        {activeTooltip === tooltipId && (
+                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 z-20">
+                            <div className="bg-gray-800 text-white text-xs rounded-lg p-3 shadow-lg border border-gray-600 max-w-xs">
+                              <div className="relative">
+                                {step.tooltipText}
+                                {/* Arrow */}
+                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     )}
                   </div>
+                  
+                  {/* Modern Button */}
+                  {step.hasButton && (
+                    <button className={`${step.buttonStyle} font-semibold text-sm sm:text-base lg:text-lg py-2 sm:py-3 px-6 sm:px-8 lg:px-12 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 min-w-[120px] sm:min-w-[140px] lg:min-w-[160px] touch-target`}>
+                      {step.buttonText}
+                    </button>
+                  )}
                 </div>
               </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Call to Action */}
-      <div className="text-center mt-8 pt-6 border-t border-gray-700">
-        <button className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-12 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105">
-          Start Your Journey
-        </button>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
