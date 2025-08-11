@@ -66,41 +66,8 @@ export const LicenseProcessFlowchart: React.FC = () => {
       </div>
 
       {/* Desktop Flow - Single Row (Landscape only) */}
-      <div className="hidden lg:landscape:block">
-        <div className="flex items-start justify-between relative max-w-6xl mx-auto">
-          {/* Connection Line */}
-          <div className="absolute top-6 left-12 right-12 h-0.5 bg-gray-700 z-0"></div>
-          
-          {steps.map((step, index) => {
-            const Icon = step.icon;
-            
-            return (
-              <div key={step.id} className="relative flex flex-col items-center z-10 flex-1 max-w-28">
-                {/* Step Circle */}
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mb-3 transition-all duration-300 bg-gray-800 text-white border-2 border-gray-600">
-                  <Icon size={20} />
-                </div>
-
-                {/* Content */}
-                <div className="text-center">
-                  <h3 className="text-white font-medium text-xs mb-2 leading-tight min-h-[2.5rem] flex items-center justify-center">
-                    {step.title}
-                  </h3>
-                  
-                  {step.hasButton && (
-                    <button className="bg-lime-400 hover:bg-lime-300 text-black font-medium text-xs py-1.5 px-3 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
-                      Learn
-                    </button>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Mobile/Portrait Flow - Vertical */}
-      <div className="block lg:landscape:hidden">
+      {/* Unified Flow - Vertical for All Devices */}
+      <div className="block">
         <div className="space-y-4">
           {steps.map((step, index) => {
             const Icon = step.icon;
@@ -127,7 +94,7 @@ export const LicenseProcessFlowchart: React.FC = () => {
                     </h3>
                     
                     {step.hasButton && (
-                      <button className="bg-lime-400 hover:bg-lime-300 text-black font-medium text-xs py-2 px-4 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md touch-target">
+                      <button className="bg-lime-400 hover:bg-lime-300 text-black font-medium text-xs py-1.5 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md touch-target">
                         Learn
                       </button>
                     )}
@@ -141,7 +108,7 @@ export const LicenseProcessFlowchart: React.FC = () => {
 
       {/* Call to Action */}
       <div className="text-center mt-8 pt-6 border-t border-gray-700">
-        <button className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-3 px-8 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105">
+        <button className="bg-lime-400 hover:bg-lime-300 text-black font-semibold py-2 px-12 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105">
           Start Your Journey
         </button>
       </div>
