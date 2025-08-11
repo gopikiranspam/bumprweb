@@ -1,3 +1,6 @@
+import React from 'react';
+import { Calendar, FileText, Trophy, Clock, Car, CheckCircle, Award } from 'lucide-react';
+
 export const LicenseProcessFlowchart: React.FC = () => {
   const steps = [
     {
