@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, FileText, Trophy, Clock, Car, CheckCircle, Award, Info, Star } from 'lucide-react';
+import { Calendar, FileText, Trophy, Clock, Car, CheckCircle, Award, Info } from 'lucide-react';
 
 export const LicenseProcessFlowchart: React.FC = () => {
   const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
@@ -10,14 +10,16 @@ export const LicenseProcessFlowchart: React.FC = () => {
       title: 'Book LLR Slot',
       icon: Calendar,
       hasButton: true,
-      buttonText: 'How to apply'
+      buttonText: 'Apply Now',
+      buttonStyle: 'bg-gray-700 hover:bg-gray-600 text-white'
     },
     {
       id: 2,
       title: 'Pass LLR Exam',
       icon: FileText,
       hasButton: true,
-      buttonText: 'Mock Test'
+      buttonText: 'Mock Test',
+      buttonStyle: 'bg-gray-700 hover:bg-gray-600 text-white'
     },
     {
       id: 3,
@@ -40,15 +42,16 @@ export const LicenseProcessFlowchart: React.FC = () => {
       title: 'Learn Driving',
       icon: Car,
       hasButton: true,
-      buttonText: 'Find Host',
-      isImportant: true
+      buttonText: 'Find Tutor',
+      buttonStyle: 'bg-gray-700 hover:bg-gray-600 text-white'
     },
     {
       id: 6,
       title: 'Book Driving Test',
       icon: FileText,
       hasButton: true,
-      buttonText: 'How to apply'
+      buttonText: 'Apply Now',
+      buttonStyle: 'bg-gray-700 hover:bg-gray-600 text-white'
     },
     {
       id: 7,
@@ -141,14 +144,9 @@ export const LicenseProcessFlowchart: React.FC = () => {
                   
                   {/* Modern Button */}
                   {step.hasButton && (
-                    <div className="flex items-center space-x-1">
-                      {step.isImportant && (
-                        <Star size={12} className="text-lime-400 fill-current" />
-                      )}
-                      <button className="text-lime-400 hover:text-lime-300 font-medium text-xs underline hover:no-underline transition-colors touch-target">
-                        {step.buttonText}
-                      </button>
-                    </div>
+                    <button className="bg-lime-400 hover:bg-lime-300 text-black font-medium text-xs py-1 px-3 rounded-full transition-colors touch-target">
+                      {step.buttonText}
+                    </button>
                   )}
                 </div>
               </div>
