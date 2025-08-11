@@ -11,7 +11,7 @@ export const LicenseProcessFlowchart: React.FC = () => {
       icon: Calendar,
       hasButton: true,
       buttonText: 'Apply Now',
-      buttonStyle: 'bg-blue-500 hover:bg-blue-600 text-white'
+      buttonStyle: 'bg-gray-700 hover:bg-gray-600 text-white'
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ export const LicenseProcessFlowchart: React.FC = () => {
       icon: FileText,
       hasButton: true,
       buttonText: 'Mock Test',
-      buttonStyle: 'bg-green-500 hover:bg-green-600 text-white'
+      buttonStyle: 'bg-gray-700 hover:bg-gray-600 text-white'
     },
     {
       id: 3,
@@ -43,7 +43,7 @@ export const LicenseProcessFlowchart: React.FC = () => {
       icon: Car,
       hasButton: true,
       buttonText: 'Find Tutor',
-      buttonStyle: 'bg-purple-500 hover:bg-purple-600 text-white'
+      buttonStyle: 'bg-gray-700 hover:bg-gray-600 text-white'
     },
     {
       id: 6,
@@ -51,7 +51,7 @@ export const LicenseProcessFlowchart: React.FC = () => {
       icon: FileText,
       hasButton: true,
       buttonText: 'Apply Now',
-      buttonStyle: 'bg-orange-500 hover:bg-orange-600 text-white'
+      buttonStyle: 'bg-gray-700 hover:bg-gray-600 text-white'
     },
     {
       id: 7,
@@ -144,7 +144,7 @@ export const LicenseProcessFlowchart: React.FC = () => {
                   
                   {/* Modern Button */}
                   {step.hasButton && (
-                    <button className={`${step.buttonStyle} font-semibold text-sm sm:text-base lg:text-lg py-2 sm:py-3 px-6 sm:px-8 lg:px-12 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 min-w-[120px] sm:min-w-[140px] lg:min-w-[160px] touch-target`}>
+                    <button className={`${step.buttonStyle} font-medium text-xs py-1 px-3 rounded-md transition-colors touch-target`}>
                       {step.buttonText}
                     </button>
                   )}
