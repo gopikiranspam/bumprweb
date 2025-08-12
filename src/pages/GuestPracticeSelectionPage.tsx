@@ -60,22 +60,22 @@ export const GuestPracticeSelectionPage: React.FC = () => {
       description: 'Learn and practice road signs recognition',
     },
     {
-      id: 'road_rules',
-      name: t('trafficRules'),
+      id: 'driving_license_process',
+      name: 'Driving License Process',
       icon: BookOpen,
       color: 'text-green-400',
       bgColor: 'bg-green-500/10',
       borderColor: 'border-green-500/30',
-      description: 'Master traffic rules and regulations',
+      description: 'Step by step guidance for driving license application process',
     },
     {
-      id: 'driving_principles',
-      name: t('drivingPrinciples'),
+      id: 'tips',
+      name: 'Tips',
       icon: Award,
       color: 'text-purple-400',
       bgColor: 'bg-purple-500/10',
       borderColor: 'border-purple-500/30',
-      description: 'Practice safe driving principles',
+      description: 'Essential tips and tricks for driving test success',
     },
   ];
 
@@ -239,11 +239,25 @@ export const GuestPracticeSelectionPage: React.FC = () => {
                 </p>
 
                 <button
-                  onClick={() => navigate(`/guest-practice/${subject.id}`)}
+                  onClick={() => {
+                    if (subject.id === 'driving_license_process') {
+                      // Handle driving license process navigation
+                      console.log('Navigate to driving license process');
+                    } else if (subject.id === 'tips') {
+                      // Handle tips navigation
+                      console.log('Navigate to tips section');
+                    } else {
+                      navigate(`/guest-practice/${subject.id}`);
+                    }
+                  }}
                   className="w-full bg-lime-400 hover:bg-lime-300 text-black font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2 touch-target"
                 >
                   <Play size={16} />
-                  <span>Start Practice</span>
+                  <span>
+                    {subject.id === 'driving_license_process' ? 'Apply Now' : 
+                     subject.id === 'tips' ? 'View Tips' : 
+                     'Start Practice'}
+                  </span>
                 </button>
               </div>
             );
