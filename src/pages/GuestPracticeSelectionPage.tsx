@@ -61,12 +61,12 @@ export const GuestPracticeSelectionPage: React.FC = () => {
     },
     {
       id: 'driving_license_process',
-      name: 'Driving License Process',
+      name: 'License Process',
       icon: BookOpen,
       color: 'text-green-400',
       bgColor: 'bg-green-500/10',
       borderColor: 'border-green-500/30',
-      description: 'Step by step guidance for driving license application process',
+      description: 'Step by step guidance for driving license application',
     },
     {
       id: 'tips',
