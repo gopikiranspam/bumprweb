@@ -244,8 +244,7 @@ export const GuestPracticeSelectionPage: React.FC = () => {
                       // Handle driving license process navigation
                       console.log('Navigate to driving license process');
                     } else if (subject.id === 'tips') {
-                      // Handle tips navigation
-                      console.log('Navigate to tips section');
+                      navigate('/tips');
                     } else {
                       navigate(`/guest-practice/${subject.id}`);
                     }

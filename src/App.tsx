@@ -13,6 +13,7 @@ import { GuestPracticeSelectionPage } from './pages/GuestPracticeSelectionPage';
 import { GuestPracticeTestPage } from './pages/GuestPracticeTestPage';
 import { GuestMockTestPage } from './pages/GuestMockTestPage';
 import { GuestStudyGuidePage } from './pages/GuestStudyGuidePage';
+import { TipsPage } from './pages/TipsPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsConditionsPage } from './pages/TermsConditionsPage';
 import { DisclaimerPage } from './pages/DisclaimerPage';
@@ -84,6 +85,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/guest-practice/:subject" element={<GuestPracticeTestPage />} />
         <Route path="/guest-mock-test" element={<GuestMockTestPage />} />
         <Route path="/guest-study-guide" element={<GuestStudyGuidePage />} />
+        <Route path="/tips" element={<TipsPage />} />
         
         {/* Legal and Info Pages */}
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
