@@ -147,7 +147,7 @@ export const PrivacyPolicyPage: React.FC = () => {
                 <span>Contact Us</span>
               </h2>
               <div className="bg-lime-500/10 border border-lime-500/30 rounded-lg p-4">
-                <p className="text-lime-300 mb-2">If you have any questions about this Privacy Policy, please contact:</p>
+                <p className="text-lime-300 mb-2">If you want to delete the account and have any questions please contact us:</p>
                 <div className="flex items-center space-x-2">
                   <Mail size={16} className="text-lime-400" />
                   <a 
